@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @GetMapping(value = "/test")
     public String test(){
+// 注释
         return "test controller";
     }
 }
