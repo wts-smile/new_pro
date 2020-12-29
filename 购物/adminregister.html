@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员页面</title>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+    <form action="demo.php" method="POST" class="rform">
+        <h2 align=center>注册</h2>
+        <em>请输入用户名:</em><input type="text" name="username" value="请输入用户名" maxlength="20" id="username"><br>
+        <em>请输入注册身份:</em><select>
+            <option value="admin">管理员</option>
+            <option value="user" selected="selected">游客</option>
+        </select><br>
+        <em>请输入邮箱:</em><input type="text" name="email"><br>
+        <em>请输入手机号:</em><input type="text" name="number"><br>
+        <em>请输入密码:</em><input type="password" name="pwd"><br>
+        <em>请再次输入密码:</em><input type="password" name="pwd"><br>
+        <input class="rbutton" type="submit" value="完成注册"><br>
+
+    </form>
+
+</body>
+
+</html>
