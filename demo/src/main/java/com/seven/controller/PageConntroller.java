@@ -10,5 +10,4 @@ public class PageConntroller {
     public String pingPage(Model model) {
         return "ping";
     }
-
 }
