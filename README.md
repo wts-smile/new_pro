@@ -412,7 +412,7 @@ response
 | pageNum     | int         | 第几页     |
 | productList | Product数组 | 该页的商品 |
 
-## 修改 POST
+## 修改商品 POST
 
 request
 
@@ -426,7 +426,7 @@ response
 | ----- | ---- | ---------- |
 | errno | int  | 0成功1失败 |
 
-## 上下架 POST
+## 上下架商品 POST
 
 request
 
