@@ -1,9 +1,11 @@
 package com.seven.pojo;
+import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 @Component
+@TableName("`order`")
 public class Order implements Serializable {
     private int id;
     private String username;

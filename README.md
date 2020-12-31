@@ -109,7 +109,7 @@ UserAndAddr的结构
 
 # 商品展示
 
-## 热销商品展示 GET
+## 热销商品展示 GET /product/list
 
 request
 
@@ -127,7 +127,7 @@ response
 | pageNum     | int         | 第几页     |
 | productList | Product数组 | 该页的商品 |
 
-## 分类商品展示 GET
+## 分类商品展示 GET /product/list/type
 
 request
 
@@ -146,7 +146,7 @@ response
 | pageNum     | int         | 第几页     |
 | productList | Product数组 | 该页的商品 |
 
-## 商品详情 GET
+## 商品详情 GET /product/get
 
 request
 
@@ -162,7 +162,7 @@ response
 
 ## 辅助接口
 
-### 获取所有商品分类 GET
+### 获取所有商品分类 GET /product/types
 
 request
 
@@ -181,19 +181,29 @@ response
 Product
 
 ```
-// id，商品名称，商品类别，商品图片，商品详情，状态【上架，下架】，销量
-// 稍后完善
+{
+    "id": 3,
+    "name": "name4",
+    "ptype": "type2",
+    "pic": "1.png, 2.png",
+    "detail": "detail",
+    "price": 3.0,
+    "status": 1,
+    "salecnt": 1
+}
 ```
 
 # 购物车
 
-## 清空购物车 POST
+## 把商品添加到购物车 POST
 
 request
 
-|            |      |      |
-| ---------- | ---- | ---- |
-| 不需要参数 |      |      |
+|          |        |          |
+| -------- | ------ | -------- |
+| username | string | 用户名   |
+| pid      | int    | 商品id   |
+| cnt      | int    | 商品数量 |
 
 response
 
@@ -205,9 +215,10 @@ response
 
 request
 
-|        |        |                          |
-| ------ | ------ | ------------------------ |
-| idList | string | 选中商品的id，用逗号隔开 |
+|          |        |                                  |
+| -------- | ------ | -------------------------------- |
+| idList   | string | 选中要删除的商品的id，用逗号隔开 |
+| username | string | 用户名                           |
 
 response
 
@@ -219,9 +230,10 @@ response
 
 request
 
-|        |        |                          |
-| ------ | ------ | ------------------------ |
-| idList | string | 选中商品的id，用逗号隔开 |
+|          |        |                          |
+| -------- | ------ | ------------------------ |
+| username | string | 用户名                   |
+| idList   | string | 选中商品的id，用逗号隔开 |
 
 response
 
@@ -233,15 +245,44 @@ response
 
 request
 
-|        |        |                          |
-| ------ | ------ | ------------------------ |
-| idList | string | 选中商品的id，用逗号隔开 |
+|          |        |        |
+| -------- | ------ | ------ |
+| username | string | 用户名 |
 
-response
+response 示例
 
-|          |             |      |
-| -------- | ----------- | ---- |
-| products | Product数组 |      |
+```json
+[
+    {
+        "id": 1,	// 购物车项id
+        "count": 2,
+        "product": {
+            "id": 3,
+            "name": "name4",
+            "ptype": "type2",
+            "pic": "1.png, 2.png",
+            "detail": "detail",
+            "price": 3.0,
+            "status": 1,
+            "salecnt": 1
+        }
+    },
+    {
+        "id": 2,
+        "count": 1,
+        "product": {
+            "id": 4,
+            "name": "name5",
+            "ptype": "type2",
+            "pic": "1.png, 2.png",
+            "detail": "detail",
+            "price": 3.0,
+            "status": 1,
+            "salecnt": 1
+        }
+    }
+]
+```
 
 # 订单
 
@@ -249,9 +290,9 @@ response
 
 request
 
-|            |      |      |
-| ---------- | ---- | ---- |
-| 不需要参数 |      |      |
+|          |        |        |
+| -------- | ------ | ------ |
+| username | string | 用户名 |
 
 response
 
@@ -278,7 +319,7 @@ response
 Order
 
 ```
-// id，用户名，商品id，状态【1-未付款，2-已付款，3-已发货，4-交易成功，5-交易关闭，6-已取消】，开始时间，结束时间
+// id，用户名，商品id，状态【1-未付款，2-已付款，3-已取消】，开始时间，结束时间
 // 稍后完善
 ```
 
@@ -372,7 +413,7 @@ response
 | ----- | ---- | ---------- |
 | errno | int  | 0成功1失败 |
 
-## 充值 POST
+# 充值 POST
 
 request
 

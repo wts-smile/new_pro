@@ -58,6 +58,4 @@ public class ProductServiceImpl implements ProductService {
     public int getProductNum() {
         return productDao.selectCount(null);
     }
-
-
 }
