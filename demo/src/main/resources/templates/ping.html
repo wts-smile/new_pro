@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ping</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet">
+</head>
+<body>
+<h1>Pong</h1>
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">单行输入框</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">复选框</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="like[write]" title="写作">
+            <input type="checkbox" name="like[read]" title="阅读" checked="">
+            <input type="checkbox" name="like[game]" title="游戏">
+        </div>
+    </div>
+</form>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    layui.use(('layer', function () {
+        var layer = layui.layer;
+        var index = null;
+        var $ = layui.jquery;
+        $.ajax({
+            url:'/test',
+            method:'post',
+            data:{},
+            dataType:'JSON',
+            async:false,
+            success:function(res){
+                console.log(res);
+            },
+            error:function (data) {
+                console.log(data);
+            }
+        });
+    }));
+</script>
+
+</body>
+</html>
