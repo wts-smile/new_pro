@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="demo.php" method="POST" class="rform">
+    <form action="demo.php" method="POST" class="rform" id="app">
         <h2 align=center>注册</h2>
         <em>请输入用户名:</em><input type="text" name="username" autofocus="autofocus" autocomplete="off" placeholder="请输入用户名"
             maxlength="20" id="username"><br>
@@ -21,9 +21,24 @@
         <em>请输入手机号:</em><input type="text" name="number"><br>
         <em>请输入密码:</em><input type="password" name="pwd"><br>
         <em>请再次输入密码:</em><input type="password" name="pwd"><br>
-        <input class="rbutton" type="submit" value="完成注册"><br>
+        <input class="rbutton" type="button" :click="submit" value="完成注册"><br>
 
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                goods: [{ id: 1, name: "草莓", price: 5, count: 1, active: true }, {}, {}],
+            },
+            methods: {
+                submit: function () {
+
+                }
+            },
+
+        })
+    </script>
 
 </body>
 
