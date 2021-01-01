@@ -16,7 +16,7 @@ mysql用户名root密码action123
 
 # 前台功能
 
-## 用户登录 POST
+## 用户登录 POST /user/login
 
 request
 
@@ -34,15 +34,17 @@ response
 
 
 
-## 注册 POST
+## 注册 POST /user/register
 
 request
 
-|           |        |      |
-| --------- | ------ | ---- |
-| username  | string |      |
-| password  | string |      |
-| checkpass | string |      |
+|           |        |                       |
+| --------- | ------ | --------------------- |
+| username  | string |                       |
+| password  | string |                       |
+| checkpass | string |                       |
+| detail    | string | 详细信息              |
+| role      | int    | 1系统用户2管理员3游客 |
 
 response
 
@@ -51,7 +53,7 @@ response
 | errno | int    | 错误码，0表示无错误 |
 | error | string | 错误描述            |
 
-## 个人资料 GET
+## 个人资料 GET /user/get
 
 request
 
@@ -363,6 +365,21 @@ request
 | --------- | ---- | ------ |
 | productId | int  | 商品id |
 | uid       | int  | 用户id |
+
+response
+
+|       |      |            |
+| ----- | ---- | ---------- |
+| errno | int  | 0成功1失败 |
+
+## 充值 POST
+
+request
+
+|       |        |          |
+| ----- | ------ | -------- |
+| money | double | 充值金额 |
+| uid   | int    | 用户id   |
 
 response
 
