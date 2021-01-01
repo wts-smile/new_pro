@@ -15,4 +15,6 @@ public interface ProductService {
     List<String> getAllTypes();
 
     int getProductNum();
+
+    Product ProductOnStore(int productId, int status);
 }
