@@ -119,12 +119,55 @@
 			"response": []
 		},
 		{
+			"name": "/user/changepass",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dzy",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "newpass",
+							"value": "321",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/user/changepass",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"changepass"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/user/get",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8080/user/get?uid=2",
+					"raw": "http://127.0.0.1:8080/user/get?uid=1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -140,8 +183,46 @@
 					"query": [
 						{
 							"key": "uid",
-							"value": "2"
+							"value": "1"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/recharge",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dzy",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/user/recharge",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"recharge"
 					]
 				}
 			},
@@ -224,6 +305,44 @@
 						"product",
 						"list",
 						"type"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/product/onstore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "productId",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "stat",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/product/onstore",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"onstore"
 					]
 				}
 			},
@@ -424,6 +543,253 @@
 					"path": [
 						"cart",
 						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/order/list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/order/list?username=dzy",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"order",
+						"list"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "dzy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pay",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "productId",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "dzy",
+							"type": "text"
+						},
+						{
+							"key": "cnt",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/pay",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/addr/list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/addr/list?username=dzy",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"addr",
+						"list"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "dzy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/addr/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dzy",
+							"type": "text"
+						},
+						{
+							"key": "addr",
+							"value": "testaddr3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/addr/add",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"addr",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/addr/del",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "aid",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/addr/del",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"addr",
+						"del"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/addr/upd",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "aid",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "addr",
+							"value": "updaddr2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/addr/upd",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"addr",
+						"upd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/addr/setdefault",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dzy",
+							"type": "text"
+						},
+						{
+							"key": "aid",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/addr/setdefault",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"addr",
+						"setdefault"
 					]
 				}
 			},
