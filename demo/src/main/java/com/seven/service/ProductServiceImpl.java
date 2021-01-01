@@ -58,4 +58,12 @@ public class ProductServiceImpl implements ProductService {
     public int getProductNum() {
         return productDao.selectCount(null);
     }
+
+    @Override
+    public Product ProductOnStore(int productId, int status) {
+        Product p = productDao.selectById(productId);
+        p.setStatus(status);
+        productDao.updateById(p);
+        return p;
+    }
 }

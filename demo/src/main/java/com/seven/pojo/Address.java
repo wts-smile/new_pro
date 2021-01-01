@@ -9,11 +9,11 @@ public class Address implements Serializable {
     private int id;
     private String name;
     private String addr;
-    private String isdefault;
+    private int isdefault;
 
     public Address() { }
 
-    public Address(int id, String name, String addr, String isdefault) {
+    public Address(int id, String name, String addr, int isdefault) {
         this.id = id;
         this.name = name;
         this.addr = addr;
@@ -44,11 +44,11 @@ public class Address implements Serializable {
         this.addr = addr;
     }
 
-    public String getIsdefault() {
+    public int getIsdefault() {
         return isdefault;
     }
 
-    public void setIsdefault(String isdefault) {
+    public void setIsdefault(int isdefault) {
         this.isdefault = isdefault;
     }
 

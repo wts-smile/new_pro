@@ -1,19 +1,25 @@
 package com.seven.controller;
 
-import com.seven.dao.UserDao;
 import com.seven.models.reqobjs.LoginReq;
 import com.seven.models.reqobjs.RegisterReq;
 import com.seven.models.resobjs.LoginRes;
 import com.seven.models.resobjs.RegisterRes;
+import com.seven.models.resobjs.UserWithAddrRes;
+import com.seven.pojo.Address;
 import com.seven.pojo.User;
+import com.seven.service.AddrService;
 import com.seven.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    AddrService addrService;
 
     @PostMapping("/user/login")
     public LoginRes userLogin(LoginReq req) {
@@ -53,9 +59,52 @@ public class UserController {
         return res;
     }
 
+    @PostMapping("/user/changepass")
+    public UserWithAddrRes userChangepass(@RequestParam("username") String username,@RequestParam("password") String password,@RequestParam("newpass") String newpass) {
+        User u = userService.changePass(username, password, newpass);
+        List<Address> list = addrService.listAllAddrByUser(username);
+        UserWithAddrRes res = new UserWithAddrRes();
+        res.setAddr(list);
+        res.setBalance(u.getBalance());
+        res.setDetail(u.getDetail());
+        res.setBalance(u.getBalance());
+        res.setId(u.getId());
+        res.setName(u.getName());
+        res.setPass(u.getPass());
+        res.setRole(u.getRole());
+        return res;
+    }
+
     @GetMapping("/user/get")
-    public User userGet(@RequestParam("uid") int uid) {
+    public UserWithAddrRes userGet(@RequestParam("uid") int uid) {
         //Integer.parseInt(uid)
-        return userService.getUserById(uid);
+        User u = userService.getUserById(uid);
+        List<Address> list = addrService.listAllAddrByUser(u.getName());
+        UserWithAddrRes res = new UserWithAddrRes();
+        res.setAddr(list);
+        res.setBalance(u.getBalance());
+        res.setDetail(u.getDetail());
+        res.setBalance(u.getBalance());
+        res.setId(u.getId());
+        res.setName(u.getName());
+        res.setPass(u.getPass());
+        res.setRole(u.getRole());
+        return res;
+    }
+
+    @PostMapping("/user/recharge")
+    public UserWithAddrRes userRecharge(@RequestParam("username") String username, @RequestParam("money") double money){
+        User u = userService.recharge(username, money);
+        List<Address> list = addrService.listAllAddrByUser(u.getName());
+        UserWithAddrRes res = new UserWithAddrRes();
+        res.setAddr(list);
+        res.setBalance(u.getBalance());
+        res.setDetail(u.getDetail());
+        res.setBalance(u.getBalance());
+        res.setId(u.getId());
+        res.setName(u.getName());
+        res.setPass(u.getPass());
+        res.setRole(u.getRole());
+        return res;
     }
 }
