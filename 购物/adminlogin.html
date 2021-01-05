@@ -9,16 +9,33 @@
 </head>
 
 <body>
-    <form action="demo.php" method="POST" class="lform">
+    <form action="demo.php" method="POST" class="lform" id="app">
         <h2 align=center>管理员登陆</h2>
-        用户名:<input type="text" name="username" autofocus="autofocus" placeholder="请输入用户名" maxlength="20"
-            id="username"><br>
-        密码:<input type="password" name="pwd"><br>
-        <input class="lbutton" type="submit" value="登入"><br>
-        <input class="lbutton" type="submit" value="注册"><br>
-        <input class="lbutton" type="submit" value="忘记密码"><br>
+        用户名:<input type="text" name="username" autofocus="autofocus" placeholder="请输入用户名" maxlength="20" id="username"
+            v-model="name"><br>
+        密码:<input type="password" name="pwd" v-model="password"><br>
+        <input class="lbutton" type="button" value="登入" @click="submit"><br>
+        <input class="lbutton" type="button" value="注册"><br>
+        <input class="lbutton" type="button" value="忘记密码"><br>
 
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                id: 1,
+                name: "",
+                password: ""
+            },
+            methods: {
+                submit: function () {
+                    console.log(this)
+                }
+            },
+
+        })
+    </script>
 
 </body>
 

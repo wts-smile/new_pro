@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>编辑商品</title>
+	<link href="css/merchandise.css" rel="stylesheet">
+	<script type="text/javascript" src="https://unpkg.com/wangeditor/dist/wangEditor.min.js"></script>
+</head>
+
+<body>
+	<div class="box">
+		<div class="lab">
+			<p>
+				<label>商品类目：</label>
+				<input type="button" value="选择类目" />
+			</p>
+			<p>
+				<label>商品标题：</label>
+				<input type="text" value="" placeholder="请输入商品标题" />
+			</p>
+			<p>
+				<label>商品卖点：</label>
+				<input type="text" value="" />
+			</p>
+			<p>
+				<label>商品价格：</label>
+				<input type="text" value="" placeholder="请输入商品价格" />
+			</p>
+			<p>
+				<label>库存数量：</label>
+				<input type="text" value="" />
+			</p>
+			<p>
+				<label>商品图片：</label>
+				<input type="button" value="上传图片" />
+			</p>
+			<p class="disFLEX">
+				<label>商品类目：</label>
+				<span id="div1">
+
+				</span>
+			</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		const E = window.wangEditor
+		const editor = new E('#div1')
+		// 或者 const editor = new E( document.getElementById('div1') )
+		editor.create()
+	</script>
+</body>
+
+</html>

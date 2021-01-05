@@ -19,7 +19,7 @@
             &nbsp&nbsp&nbsp&nbsp<a href="login.html" class="gray">商城首页</a>
         </p>
 
-        <div style="" id="gps1">
+        <div id="gps1">
             <img src="images/gps.png" height="20px" width="14px">
             &nbsp北京
         </div>
@@ -75,7 +75,7 @@
                         <span><button @click="removelot">删除选中的商品</button>
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                             <span><button
-                                    @click="removeAll">清空购物车</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                    @click="removeAll">清空购物车</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                             <span class="cart-bottom-span">已选择<span class="cart-total-num">{{count}}</span>件商品</span>
                             <span class="cart-bottom-span">总计：<span class="cart-total-price">{{total}}</span></span>
@@ -93,6 +93,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         var app = new Vue({
             el: ".b",
@@ -120,6 +121,12 @@
                         this.list = []
                     }
 
+                },
+                created: function () {
+                    var that = this
+                    axios.get('待定localhost和具体地址').then(function (resp) {
+                        that.list = resp.data;//先默认返回的文件中data是需要的商品数组,数组内的数据格式你根据后端返回的数据调一下
+                    })
                 }
             },
             computed: {
