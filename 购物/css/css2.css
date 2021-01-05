@@ -1,0 +1,29 @@
+.cart{
+    width: 700px;padding: 0 10px 10px;border: 1px solid #D5E5F5;
+    margin-left: 300px;
+    margin-top: 100px;
+
+}
+.cart-title{margin-bottom: 10px;font-size: 14px;border-bottom: 1px solid #AED2FF;line-height: 30px;height: 30px;font-weight:700;text-indent: 15px;color:#333;font-family:'Microsoft YaHei' ;}
+/* border-bottom底部边框 ,text-indent：首行缩进*/
+.cart-table{width: 100%;margin: 0 auto;border-color:wheat;font-size: 12px;font-family: Verdana,"Microsoft YaHei";color: #333333;}
+
+.cart-table th{border-bottom: 2px solid #B2D1FF;font-weight: normal;height: 35px;line-height:1.4375rem ;}
+.cart-item{background-color: #FAFCFF;border-bottom: 1px dotted #84B3FD;}
+.cart-item td{height:55px; text-align: center;}
+.cart-item .cart-txt-left{text-align:left;}
+.cart-name{color: #3366D4;font-weight: bold;}
+.cart-subtotal{color: #FF3334;font-weight: bold;}
+.cart-reduce,.cart-add{display: inline-block;width: 16px;height: 16px;line-height: 16px;color: #FFF;
+    background-color: #BDBDBD;border: 0;cursor: pointer;border-radius: 2px;font-family:'Arial' ;font-size: 0.833331rem;}
+.cart-raduce:hover,.cart-add:hover{background-color: #FF9900;}
+.cart-num{margin: 5px;width: 35px;text-align: center;height: 20px;line-height: 20px;padding: 0 3px;display: inline-block;
+    background: #fff;border: 1px solid #bbb;}
+.cart-del,.cart-all{color: #3366D4;}
+.cart-del:hover,.cart-all:hover{text-decoration: underline;cursor: pointer;}
+.cart-bottom{height: 55px;text-align: right;}
+.cart-bottom .cart-all{position:relative;top:1px;}
+.cart-total-price{color: #FF3334;font-weight: bold;font-size: 16px;}
+.cart-bottom-btn{color: #FFF;font-size: 14px;font-weight: 600;cursor: pointer;margin: 0 20px;background: #FE8502;
+    border: 1px solid #FF6633;border-radius: 5px 5px 5px 5px;padding: 6px 12px;}
+.cart-bottom-btn:hover{background: #FF6600;}
