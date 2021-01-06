@@ -87,7 +87,7 @@
     top: 25px;
     width: 538px;
     height: 36px;
-    border: 2px solid #b1191a;
+    border: 2px solid #a419b1;
 }
 
 .search input {
@@ -101,7 +101,7 @@
     float: left;
     width: 80px;
     height: 32px;
-    background-color: #b1191a;
+    background-color: #2294a8;
     font-size: 16px;
     color: #fff;
 }
