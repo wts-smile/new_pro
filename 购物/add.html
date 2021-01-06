@@ -5,49 +5,65 @@
 	<meta charset="utf-8">
 	<title>新增商品</title>
 	<link href="css/merchandise.css" rel="stylesheet">
-	<script type="text/javascript" src="https://unpkg.com/wangeditor/dist/wangEditor.min.js"></script>
 </head>
 
 <body>
 	<div class="box">
-		<div class="lab">
+		<div class="lab" id="app">
 			<p>
 				<label>商品类目：</label>
-				<input type="button" value="选择类目" />
+				<select name="type" id="type">
+					<option value="mobilephone">手机</option>
+					<option value="earphone">耳机</option>
+					<option value="computer">电脑</option>
+					<option value="computer parts">电脑配件</option>
+					<option value="phone parts">手机配件</option>
+				</select>
 			</p>
 			<p>
-				<label>商品标题：</label>
-				<input type="text" value="" placeholder="请输入商品标题" />
+				<label>商品名称：</label>
+				<input type="text" value="" placeholder="请输入商品标题" v-model="name" />
 			</p>
 			<p>
 				<label>商品卖点：</label>
-				<input type="text" value="" />
+				<input type="text" value="" v-model="message" />
 			</p>
 			<p>
 				<label>商品价格：</label>
-				<input type="text" value="" placeholder="请输入商品价格" />
+				<input type="text" value="" v-model="price" placeholder="请输入商品价格" />
 			</p>
 			<p>
 				<label>库存数量：</label>
-				<input type="text" value="" />
+				<input type="text" value="" v-model="count" />
 			</p>
 			<p>
 				<label>商品图片：</label>
-				<input type="button" value="上传图片" />
+				<input type="file" value="上传图片" />
 			</p>
-			<p class="disFLEX">
-				<label>商品类目：</label>
-				<span id="div1">
-
-				</span>
-			</p>
+			<p><button>确认</button></p>
 		</div>
+
 	</div>
-	<script type="text/javascript">
-		const E = window.wangEditor
-		const editor = new E('#div1')
-		// 或者 const editor = new E( document.getElementById('div1') )
-		editor.create()
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				id: 1,
+				message: "暗影精灵6到飞起，全新升级10代酷睿处理器！轻薄新外观搭载酷凉风暴散热模组！",
+				name: "暗影精灵6",
+				bgurl: "img/computer.jpg",
+				count: 1,
+				price: 7800,
+			},
+			methods: {
+				submit: function () {
+					console.log(this)
+				}
+			},
+
+		})
 	</script>
 </body>
 
