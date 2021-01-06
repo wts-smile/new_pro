@@ -16,6 +16,11 @@ body {
     background-color: purple;
 }
 
+.focus img {
+    width: 721px;
+    height: 455px;
+}
+
 .newsflash {
     float: right;
     width: 250px;
