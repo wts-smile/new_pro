@@ -11,16 +11,36 @@
 <body>
     <form action="demo.php" method="POST" class="rform" id="app">
         <h2 align=center>注册</h2>
-        <em>请输入用户名:</em><input type="text" v-model="name" name="username" autofocus="autofocus" autocomplete="off"
-            placeholder="请输入用户名" maxlength="20" id="username"><br>
-        <em>请输入注册身份:</em><select v-model="type">
-            <option value="admin">管理员</option>
-            <option value="user">游客</option>
-        </select><br>
-        <em>请输入邮箱:</em><input type="email" name="email" v-model="email" placeholder="请输入邮箱"><br>
-        <em>请输入手机号:</em><input type="tel" name="number" v-model="tel" placeholder="请输入手机号"><br>
-        <em>请输入密码:</em><input type="password" name="pwd" v-model="password"><br>
-        <em>请再次输入密码:</em><input type="password" name="pwd"><br>
+        <table>
+            <tr>
+                <td>请输入用户名:</td>
+                <td><input type="text" v-model="name" name="username" autofocus="autofocus" autocomplete="off"
+                        placeholder="请输入用户名" maxlength="20" id="username"></td>
+            </tr>
+            <tr>
+                <td>请输入注册身份:</td>
+                <td><select v-model="type">
+                        <option value="admin">管理员</option>
+                        <option value="user">游客</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>请输入邮箱:</td>
+                <td><input type="text" name="email" v-model="email" placeholder="请输入邮箱"></td>
+            </tr>
+            <tr>
+                <td>请输入手机号:</td>
+                <td><input type="number" name="number" v-model="tel" placeholder="请输入手机号"></td>
+            </tr>
+            <tr>
+                <td>请输入密码:</td>
+                <td><input type="password" name="pwd" v-model="password"></td>
+            </tr>
+            <tr>
+                <td>请再次输入密码:</td>
+                <td><input type="password" name="pwd"></td>
+            </tr>
+        </table>
         <input class="rbutton" type="button" value="完成注册" @click="submit"><br>
 
     </form>
@@ -33,7 +53,7 @@
                 name: "",
                 type: "user",
                 email: "",
-                tel: 133,
+                tel: 1,
                 password: ""
             },
             methods: {
