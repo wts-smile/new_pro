@@ -11,18 +11,20 @@ public class Product implements Serializable {
     private String ptype;
     private String pic;
     private String detail;
+    private double price;
     private int status;
     private int salecnt;
 
     public Product() {
     }
 
-    public Product(int id, String name, String ptype, String pic, String detail, int status, int salecnt) {
+    public Product(int id, String name, String ptype, String pic, String detail, double price, int status, int salecnt) {
         this.id = id;
         this.name = name;
         this.ptype = ptype;
         this.pic = pic;
         this.detail = detail;
+        this.price = price;
         this.status = status;
         this.salecnt = salecnt;
     }
@@ -66,6 +68,15 @@ public class Product implements Serializable {
     public void setDetail(String detail) {
         this.detail = detail;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
 
     public int getStatus() {
         return status;

@@ -1,5 +1,6 @@
 package com.seven.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.seven.dao.UserDao;
 import com.seven.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,32 @@ public class UserServiceImpl implements UserService {
             return u;
         }
         return null;
+    }
+
+    @Override
+    public User recharge(String name, double money) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", name);
+        User u = userDao.selectOne(wrapper);
+        if (u == null) {
+            return u;
+        }
+        u.setBalance(u.getBalance() + money);
+        userDao.updateById(u);
+        return u;
+    }
+
+    @Override
+    public User changePass(String name, String pass, String newPass) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", name);
+        User u = userDao.selectOne(wrapper);
+        if (u == null) {
+            return u;
+        }
+        u.setPass(newPass);
+        userDao.updateById(u);
+        return u;
     }
 
     @Override
