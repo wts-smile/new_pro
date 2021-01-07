@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(0, 0, 0, .1);
+    background-color: #FFFFFF;
 }
 
 .main {
@@ -109,7 +109,7 @@ body {
 
 .recom {
     height: 163px;
-    background-color: #ebebeb;
+    background-color: #FFFFFF;
     margin-top: 12px;
 }
 
