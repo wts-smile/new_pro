@@ -1,5 +1,5 @@
 body {
-    background-color: #FFFFFF;
+    background-color: rgba(196, 192, 192, 0.3);
 }
 
 .main {
@@ -10,6 +10,7 @@ body {
 }
 
 .focus {
+    position: relative;
     float: left;
     width: 721px;
     height: 455px;
@@ -21,7 +22,58 @@ body {
     height: 455px;
 }
 
-.newsflash {
+.focus a {
+    position: absolute;
+    width: 30px;
+    height: 50px;
+    line-height: 50px;
+    top: 50%;
+    margin-top: -15px;
+    background: rgba(0, 0, 0, .3);
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.focus .prev {
+    left: 0;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.focus .promo-nav {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    margin-left: -35px;
+    width: 70px;
+    height: 13px;
+    /* background-color: pink; */
+    background: rgba(255, 255, 255, .3);
+    border-radius: 7px;
+}
+
+.focus .promo-nav li {
+    float: left;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 3px;
+}
+
+.focus .promo-nav .selected {
+    background-color: #ff5000;
+}
+
+.focus .next {
+    right: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.focus .newsflash {
     float: right;
     width: 250px;
     height: 455px;
@@ -132,11 +184,11 @@ body {
 }
 
 .recom_bd ul li img {
-    width: 248px;
+    width: 150px;
     height: 163px;
 }
 
-.recom_bd ul li:nth-child(-n+3)::after {
+.recom_bd ul li:nth-child(-n+5)::after {
     content: '';
     position: absolute;
     right: 0;
@@ -150,13 +202,13 @@ body {
 
 .box_hd {
     height: 30px;
-    border-bottom: 2px solid #c81623;
+    border-bottom: 2px solid #198db1;
 }
 
 .box_hd h3 {
     float: left;
     font-size: 18px;
-    color: #c81623;
+    color: #2816c8;
     font-weight: 400;
 }
 

@@ -158,14 +158,14 @@
 
 .nav {
     height: 47px;
-    border-bottom: 2px solid #b1191a;
+    border-bottom: 2px solid #198db1;
 }
 
 .nav .dropdown {
     float: left;
     width: 210px;
     height: 45px;
-    background-color: #b1191a;
+    background-color: #666;
 }
 
 .nav .navitems {
@@ -185,7 +185,7 @@
     /* display: none; */
     width: 210px;
     height: 465px;
-    background-color: #c81623;
+    background-color: rgb(78, 77, 77);
     margin-top: 2px;
 }
 

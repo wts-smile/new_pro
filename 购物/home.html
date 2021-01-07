@@ -91,21 +91,21 @@
                 <div class="dt">全部商品分类</div>
                 <div class="dd">
                     <ul>
-                        <li><a href="#">家用电器</a> </li>
-                        <li><a href="list.html">手机</a>、 <a href="#">数码</a>、<a href="#">通信</a> </li>
-                        <li><a href="#">电脑、办公</a> </li>
-                        <li><a href="#">家居、家具、家装、厨具</a> </li>
-                        <li><a href="#">男装、女装、童装、内衣</a> </li>
-                        <li><a href="#">个户化妆、清洁用品、宠物</a> </li>
-                        <li><a href="#">鞋靴、箱包、珠宝、奢侈品</a> </li>
-                        <li><a href="#">运动户外、钟表</a> </li>
-                        <li><a href="#">汽车、汽车用品</a> </li>
-                        <li><a href="#">母婴、玩具乐器</a> </li>
-                        <li><a href="#">食品、酒类、生鲜、特产</a> </li>
-                        <li><a href="#">医药保健</a> </li>
-                        <li><a href="#">图书、音像、电子书</a> </li>
-                        <li><a href="#">彩票、旅行、充值、票务</a> </li>
-                        <li><a href="#">理财、众筹、白条、保险</a> </li>
+                        <li><a href="#">一体机、台式机</a> </li>
+                        <li><a href="#">手机</a>、 <a href="#">数码</a>、<a href="#">通信</a> </li>
+                        <li><a href="#">游戏本、办公本</a> </li>
+                        <li><a href="#">平板电脑</a> </li>
+                        <li><a href="#">显卡、处理器</a> </li>
+                        <li><a href="#">音箱、音响</a> </li>
+                        <li><a href="#">蓝牙耳机、接收器</a> </li>
+                        <li><a href="#">有线耳机、解码器</a> </li>
+                        <li><a href="#">游戏鼠标、键盘</a> </li>
+                        <li><a href="#">无线键盘、鼠标</a> </li>
+                        <li><a href="#">4k屏、电竞屏</a> </li>
+                        <li><a href="#">手机壳、挂件</a> </li>
+                        <li><a href="#">充电宝</a> </li>
+                        <li><a href="#">电源、充电头</a> </li>
+                        <li><a href="#">数据线、转接器</a> </li>
 
                     </ul>
                 </div>
@@ -123,12 +123,21 @@
     </nav>
     <!-- nav模块制作 end -->
     <!-- 首页专有的模块 main  start -->
-    <div class="w">
+    <div class="w" id="app">
         <div class="main">
             <div class="focus">
                 <ul>
                     <li>
-                        <img src="upload/focus1.png" alt="">
+                        <a href="#" class="prev" @click="prev" v-show="index>0">&lt;</a>
+                        <a href="#" class="next" @click="next" v-show="index<imgList.length-1">&gt;</a>
+                        <ul class="promo-nav">
+                            <li :class="{selected:index===0}"></li>
+                            <li :class="{selected:index===1}"></li>
+                            <li :class="{selected:index===2}"></li>
+                            <li :class="{selected:index===3}"></li>
+                            <li :class="{selected:index===4}"></li>
+                        </ul>
+                        <img :src="imgList[index]" alt="">
                     </li>
                 </ul>
             </div>
@@ -198,10 +207,12 @@
         </div>
         <div class="recom_bd">
             <ul>
-                <li><img src="upload/recom301.png" alt=""></li>
-                <li><img src="upload/recom301.png" alt=""></li>
-                <li><img src="upload/recom301.png" alt=""></li>
-                <li><img src="upload/recom301.png" alt=""></li>
+                <li><img src="upload/1.png" alt=""></li>
+                <li><img src="upload/2.png" alt=""></li>
+                <li><img src="upload/3.png" alt=""></li>
+                <li><img src="upload/4.png" alt=""></li>
+                <li><img src="upload/5.png" alt=""></li>
+                <li><img src="upload/6.png" alt=""></li>
             </ul>
         </div>
     </div>
@@ -404,6 +415,34 @@
         </div>
     </footer>
     <!-- 底部模块的制作 end -->
+    <script src="plugins/vue/vue.js"></script>
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                imgList: [
+                    "upload/l1.png",
+                    "upload/l2.png",
+                    "upload/l3.png",
+                    "upload/l4.png",
+                    "upload/l5.png",
+
+                ],
+                index: 0
+            },
+            methods: {
+                // 上一张
+                prev() {
+                    this.index--;
+                },
+                // 下一张
+                next() {
+                    this.index++;
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
