@@ -60,6 +60,7 @@
 .header {
     position: relative;
     height: 105px;
+    background-color: #FFFFFF;
 }
 
 .logo {
@@ -125,7 +126,7 @@
     line-height: 35px;
     text-align: center;
     border: 1px solid #dfdfdf;
-    background-color: #f7f7f7;
+    background-color: #FFFFFF;
 }
 
 .shopcar::before {
@@ -221,6 +222,7 @@
 
 .navitems ul li {
     float: left;
+    background-color: #FFFFFF;
 }
 
 .navitems ul li a {
@@ -235,7 +237,7 @@
 
 .footer {
     height: 415px;
-    background-color: #f5f5f5;
+    background-color: #FFFFFF;
     padding-top: 30px;
 }
 
