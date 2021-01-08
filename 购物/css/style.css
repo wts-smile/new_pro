@@ -27,7 +27,7 @@ div.c {
 }
 
 div.d {
-    align: center;
+    text-align: center;
 }
 
 #gps1 {
@@ -46,7 +46,8 @@ div.d {
     background-color: white;
 }
 
-#div1, #headerTitle {
+#div1,
+#headerTitle {
     display: inline-block;
     vertical-align: middle;
     float: left;
@@ -67,21 +68,40 @@ div.d {
     margin-top: 15px;
 }
 
-#a1, #a2, #a3, #a4, #a5, #a6, #a7 {
+#a1,
+#a2,
+#a3,
+#a4,
+#a5,
+#a6,
+#a7 {
     display: inline-block;
     vertical-align: middle;
     font-size: 12px;
     color: dimgray;
 }
 
-#b1, #b2, #b3, #b4, #b5, #b6, #b7, #b8, #b9, #b10, #b11 {
+#b1,
+#b2,
+#b3,
+#b4,
+#b5,
+#b6,
+#b7,
+#b8,
+#b9,
+#b10,
+#b11 {
     display: inline-block;
     vertical-align: middle;
     font-size: 12px;
     color: dimgray;
 }
 
-#c1, #c2, #c3, #c4 {
+#c1,
+#c2,
+#c3,
+#c4 {
     display: inline-block;
     vertical-align: middle;
     font-size: 12px;
@@ -93,7 +113,13 @@ div.d {
     color: lightgrey;
 }
 
-#a1, #a2, #a3, #a4, #a5, #a6, #a7 {
+#a1,
+#a2,
+#a3,
+#a4,
+#a5,
+#a6,
+#a7 {
     display: inline-block;
     vertical-align: middle;
     font-size: 12px;
@@ -145,7 +171,9 @@ div.d {
     margin-left: 270px;
 }
 
-#foot31, #foot32, #foot33 {
+#foot31,
+#foot32,
+#foot33 {
     float: left;
 }
 

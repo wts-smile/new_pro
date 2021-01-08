@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="111">
+    <meta name="description" content="111">
+    <title>我的收货地址</title>
+    <link rel="stylesheet" href="css/address.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.static.runoob.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <!--the-address-->
+    <div class="the-address">
+        <div class="adr-tent" id="vue-address">
+            <table class="adr-table">
+                <thead class="table-thead">
+                    <tr>
+                        <th rowspan="1" class="thh">
+                            <span class="tn">id</span>
+                        </th>
+                        <th rowspan="1" class="thh">
+                            <span class="tn">用户名</span>
+                        </th>
+                        <th rowspan="1" class="thh">
+                            <span class="tn">姓名</span>
+                        </th>
+                        <th rowspan="1" class="thh">
+                            <span class="tn">邮箱</span>
+                        </th>
+                        <th rowspan="1" class="thh">
+                            <span class="tn">电话/手机</span>
+                        </th>
+                        <th rowspan="1" class="thh">
+                            <span class="tn">操作</span>
+                        </th>
+                        <th rowspan="1" class="thh">
+                            <span class="tn">设置</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-tbody">
+                    <tr class="item" v-for="(v,i) in addressList">
+                        <td class="tdd">
+                            <span class="ti">
+                                <em class="tt">{{v.id}}</em>
+                            </span>
+                        </td>
+                        <td class="tdd">
+                            <span class="ti">
+                                <em class="tt">{{v.username}}</em>
+                            </span>
+                        </td>
+                        <td class="tdd">
+                            <span class="ti">
+                                <em class="tt">{{v.realname}}</em>
+                            </span>
+                        </td>
+                        <td class="tdd">
+                            <span class="ti">
+                                <em class="tt">{{v.email}}</em>
+                            </span>
+                        </td>
+                        <td class="tdd">
+                            <span class="ti">
+                                <em class="tt">{{v.phone}}</em>
+                            </span>
+                        </td>
+                        <td class="tdd">
+                            <span class="ti">
+                                <div class="handle">
+                                    <a href="javascript:;" class="a-chg">修改</a>
+                                    <i class="line">|</i>
+                                    <em class="i-del">删除</em>
+                                </div>
+                            </span>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="plugins/vue/vue.js"></script>
+    <script src="plugins/vue/axios.js"></script>
+
+    <script>
+
+        const vueAddress = new Vue({
+            el: '#vue-address',
+            data() {
+                return {
+                    addressList: [],
+                }
+            },
+            created() {
+                this.getAddressJson();
+            },
+            methods: {
+
+                getAddressJson() {
+                    let url = 'json/addressTest.json';
+                    axios.get(url)
+                        .then(response => {
+                            this.addressList = response.data.list;
+                            console.log(this.addressList);
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        })
+                },
+
+
+
+            }
+        });
+    </script>
+</body>
+
+</html>

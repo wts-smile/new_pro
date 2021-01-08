@@ -76,10 +76,11 @@
 
 .cart-reduce button:hover, .cart-add button:hover {
     background-color: #FF9900;
+    width: 100%;
 }
 
 .cart-num input {
-    width: 31px;
+    width: 20px;
     height: 16px;
 }
 
@@ -94,10 +95,14 @@
     text-align: center;
     height: 20px;
     line-height: 20px;
-    padding: 0 3px;
     display: inline-block;
     background: #fff;
     border: 1px solid #bbb;
+}
+
+.cart-num input {
+    width: 35px;
+    height: 20px;
 }
 
 .cart-del, .cart-all {

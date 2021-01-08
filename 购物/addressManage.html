@@ -116,6 +116,7 @@
                     axios.get(url)
                         .then(response => {
                             this.addressList = response.data.list;
+                            console.log(this.addressList);
                         })
                         .catch(error => {
                             console.log(error)

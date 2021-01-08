@@ -53,7 +53,7 @@ body {
     margin-top: 20px;
 }
 
-.rform input[type="text"], input[type="password"] {
+.rform input[type="text"], input[type="password"], input[type="number"], select {
     box-sizing: border-box;
     text-align: center;
     height: 30px;

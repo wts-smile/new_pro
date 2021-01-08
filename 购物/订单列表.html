@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<link rel="stylesheet" href="layui/css/layui.css" />
+<link rel="stylesheet" href="css/admin.css" />
+<link rel="stylesheet" type="text/css" media="screen and (max-width:992px)" href="css/admin.mobile.css">
+<style>
+/*导航*/
+*{margin:0;padding:0}
+a{text-decoration:none}
+.box{margin:10px;left:200px;position: absolute;}
+.order-class{width:800px;font-size:0}
+.order-class .bar{font-size:14px;font-weight:700;width:100px;text-align:center;display:inline-block;color:#333;padding:0 10px;height:20px;border-left:1px solid #ccc;border-right:1px solid #ccc;margin:0 0 0 -1px}
+.order-class .on{color:#f6615b;font-size:14px;font-weight:bold}
+/*指针*/
+.order-class-pointer{width:800px;height:3px;background:#c8c8c8;margin:10px 0 0 -1px}
+.order-class-pointer .pointer{width:121px;height:3px;background:#f6615b}
+</style>
+
+</head>
+
+<body>
+<div class="box">
+    <div class="order-class">
+        <a href="#" class="bar on">
+            <span>所有订单</span>
+        </a>
+        <a href="#" class="bar">
+            <span>待付款</span>
+            <span class="pinkColor">1</span>
+        </a>
+        <a href="#" class="bar">
+            <span>待发货</span>
+            <span class="pinkColor">0</span>
+        </a>
+        <a href="#" class="bar">
+            <span>待收货</span>
+            <span class="pinkColor">1</span>
+        </a>
+        <a href="#" class="bar">
+            <span>待评价</span>
+            <span class="pinkColor">0</span>
+        </a>
+    </div>
+    <!--指针-->
+    <div class="order-class-pointer">
+        <div class="pointer" id="pointer"></div>
+    </div>
+</div>
+<div class="layui-layout layui-layout-admin">
+<!-- 主体 -->
+        <div class="layui-body">
+            <!-- 主要内容 -->
+            <div class="container">
+                <!-- 搜索条件 -->
+                <div class="search-res-mask"></div>
+                <div class="tar mt10">
+                    <button class="layui-btn layui-btn-normal layui-btn-small">导出</button>
+                </div>
+                <!-- 表格列表 -->
+                <div class="table-list">
+                    <table class="layui-table layui-list-table" lay-skin="line">
+                        <thead>
+                            <tr>
+                                <th>订单编号</th>
+                                <th>商品名称</th>
+                                <th>商品数量</th>
+                                <th>成交金额</th>
+                                <th>收货人</th>
+                                <th>手机号码</th>
+                                <th>支付方式</th>
+                                <th>交易时间</th>
+                                <th>订单状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="layui-table-first"><i class="layui-table-hd">订单编号</i><span class="layui-table-bd">SZ2018974</span></td>
+                                <td><i class="layui-table-hd">商品名称</i><span class="layui-table-bd">Apple iPhoneX 128G 红色特别版</span></td>
+                                <td><i class="layui-table-hd">商品数量</i><span class="layui-table-bd">200</span></td>
+                                <td><i class="layui-table-hd">成交金额</i><span class="layui-table-bd price">1200.00</span></td>
+                                <td><i class="layui-table-hd">收货人</i><span class="layui-table-bd">小曹</span></td>
+                                <td><i class="layui-table-hd">手机号码</i><span class="layui-table-bd">13728936778</span></td>
+                                <td><i class="layui-table-hd">支付方式</i><span class="layui-table-bd">微信支付</span></td>
+                                <td><i class="layui-table-hd">交易时间</i><span class="layui-table-bd">2017-09-27 12:00:00</span></td>
+                                <td><i class="layui-table-hd">订单状态</i><span class="layui-table-bd">待发货</span></td>
+                                <td class="layui-table-btn">
+                                    <button class="layui-btn layui-btn-normal layui-btn-small" onclick="window.location.href='发货操作.html'">立即付款</button>
+                                    <button class="layui-btn layui-btn-normal layui-btn-small" onclick="window.location.href='待发货详情.html'">取消订单</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="layui-table-first"><i class="layui-table-hd">订单编号</i><span class="layui-table-bd">SZ2018974</span></td>
+                                <td><i class="layui-table-hd">商品名称</i><span class="layui-table-bd">Apple iPhoneX 128G 红色特别版</span></td>
+                                <td><i class="layui-table-hd">商品数量</i><span class="layui-table-bd">200</span></td>
+                                <td><i class="layui-table-hd">成交金额</i><span class="layui-table-bd price">1200.00</span></td>
+                                <td><i class="layui-table-hd">收货人</i><span class="layui-table-bd">小曹</span></td>
+                                <td><i class="layui-table-hd">手机号码</i><span class="layui-table-bd">13728936778</span></td>
+                                <td><i class="layui-table-hd">支付方式</i><span class="layui-table-bd">微信支付</span></td>
+                                <td><i class="layui-table-hd">交易时间</i><span class="layui-table-bd">2017-09-27 12:00:00</span></td>
+                                <td><i class="layui-table-hd">订单状态</i><span class="layui-table-bd">已发货</span></td>
+                                <td class="layui-table-btn">
+                                        <button class="layui-btn layui-btn-normal layui-btn-small" onclick="window.location.href='待发货详情.html'">确认收货</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 分页 -->
+                <div id="table-pages" class="tac"></div>
+                
+            </div>
+        </div>
+    </div>
+<script language="javascript" type="text/javascript">
+
+
+pointer('order-class',121);
+
+function pointer(nav,classWid){
+    var orderClass = $('.'+nav).children('a'),//导航dom
+        wid = classWid,//下标宽,也就是一条分类的宽
+        timeout,//定时器
+        Sub;//下标
+        
+    //找到on确定下标位置
+    $(orderClass).each(function(){
+        if($(this).hasClass('on')) Sub = $(this).index('.bar');
+    });
+    
+    setPointer(Sub*wid);//初始化
+    
+    //设置下标位置
+    function setPointer(px){
+        $('#pointer').css('margin-left',px + 'px');
+    }
+    //获取下标位置
+    function getPointer(){
+        return parseInt($('#pointer').css('margin-left'));
+    }
+    
+    //指针滑动,分十次移动
+    function subSlide(allDis){
+        var distan = (allDis - getPointer())/10;
+        var i=0;
+        function scro(){
+            i<9 ? setPointer(getPointer()+distan) : setPointer(allDis);
+            if(i==9) return;
+            i++;
+            timeout = setTimeout(scro,50);
+        }
+        timeout = setTimeout(scro,50);
+    }
+    //绑定事件
+    orderClass.on({
+        'mouseover':function(){
+            clearTimeout(timeout);
+            var allDis = wid*orderClass.index(this);
+            subSlide(allDis);
+        },
+        'mouseout':function(){
+            clearTimeout(timeout);
+            var allDis = Sub*wid;
+            subSlide(allDis);
+        }
+    });
+
+}
+
+</script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
+    <script type="text/javascript" src="js/admin.js"></script>
+    <script>
+        layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function () {
+            var $ = layui.jquery,
+                laydate = layui.laydate,
+                layer = layui.layer,
+                laypage = layui.laypage,
+                element = layui.element;
+            $(function () {
+                FastClick.attach(document.body);
+            });
+
+            // 分页
+            laypage.render({
+                elem: 'table-pages'
+                , count: 5
+                , layout: ['prev', 'page', 'next', 'count', 'skip']
+                , jump: function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                    }
+                }
+            });
+
+
+            // 开始时间及截止时间
+            laydate.render({
+                elem: '#time'
+                , range: true
+                , type: 'date'  // 'month'  'date' 'datetime'
+                , done: function (value, date, endDate) {
+                    console.log(value); //得到日期生成的值，如：2017-08-18
+                    console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+                    console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+                }
+                ,trigger: 'click'
+            });
+
+
+        });
+    </script>
+</body>
+</html>
