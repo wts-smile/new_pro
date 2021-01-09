@@ -15,7 +15,7 @@
         .sidebar {
             /* width: 200px; */
         }
-        
+
         .infocontainer {
             margin-left: 300px;
             margin-right: 500px;
@@ -74,8 +74,10 @@
             </div>
             <div class="arrow ">
                 <svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 492.004 492.004 ">
-    <path d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86
-                    19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z " /></svg>
+                    <path
+                        d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86
+                    19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z " />
+                </svg>
             </div>
         </div>
     </div>
@@ -91,14 +93,16 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-block">
-                    <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？"
+                        placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">姓名</label>
                 <div class="layui-input-block">
-                    <input type="text" name="realname" lay-verify="required" lay-reqtext="姓名也必填" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="realname" lay-verify="required" lay-reqtext="姓名也必填" placeholder="请输入"
+                        autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -147,7 +151,7 @@
 
         <script src="layui/layui.js " charset="utf-8 "></script>
         <script>
-            layui.use(['form', 'layedit', 'laydate'], function() {
+            layui.use(['form', 'layedit', 'laydate'], function () {
                 var form = layui.form,
                     layer = layui.layer,
                     layedit = layui.layedit,
@@ -172,7 +176,7 @@
                     pass: [
                         /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
                     ],
-                    content: function(value) {
+                    content: function (value) {
                         layedit.sync(editIndex);
                     }
                 });
@@ -180,7 +184,7 @@
 
 
                 //监听提交
-                form.on('submit(demo1)', function(data) {
+                form.on('submit(demo1)', function (data) {
                     layer.alert(JSON.stringify(data.field), {
                         title: '最终的提交信息'
                     })
