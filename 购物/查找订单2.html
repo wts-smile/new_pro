@@ -7,28 +7,30 @@
     <link rel="stylesheet" href="layui/css/layui.css" />
     <link rel="stylesheet" href="css/admin.css" />
     <link rel="stylesheet" type="text/css" media="screen and (max-width:992px)" href="css/admin.mobile.css">
+    <link rel="stylesheet" href="css/sideBar_style.css">
     <style>
         /*导航*/
+        
         * {
             margin: 0;
             padding: 0
         }
-
+        
         a {
             text-decoration: none
         }
-
+        
         .box {
             margin: 10px;
             left: 200px;
             position: absolute;
         }
-
+        
         .order-class {
             width: 800px;
             font-size: 0
         }
-
+        
         .order-class .bar {
             font-size: 14px;
             font-weight: 700;
@@ -42,31 +44,91 @@
             border-right: 1px solid #ccc;
             margin: 0 0 0 -1px
         }
-
+        
         .order-class .on {
             color: #f6615b;
             font-size: 14px;
             font-weight: bold
         }
-
         /*指针*/
+        
         .order-class-pointer {
             width: 800px;
             height: 3px;
             background: #c8c8c8;
             margin: 10px 0 0 -1px
         }
-
+        
         .order-class-pointer .pointer {
             width: 121px;
             height: 3px;
             background: #f6615b
+        }
+        
+        .sidebar {
+            width: 200px;
         }
     </style>
 
 </head>
 
 <body>
+
+
+    <div class="sidebar">
+        <!-- sidebartop -->
+        <div class="sidebar__top">
+            <div class="top">
+                <h2>管理员面板</h2>
+                <div class="humburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--sidebar navigation -->
+        <div class="sidebar__nav">
+            <h5>导航菜单</h5>
+            <ul class="sidebar__menu">
+                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                    <span>订单管理</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>商品管理</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>新增商品</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>用户管理</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>个人资料</span>
+                </li>
+                <!-- <li class="sidebar__menu--item"> -->
+                <li class="sidebar__menu--item">
+                    <span>修改密码</span>
+                </li>
+            </ul>
+        </div>
+        <!-- sidebar profile -->
+        <div class="sidebar__profile ">
+            <div class="avatar ">
+                <img src="img/sideBar1.jpg " alt=" ">
+            </div>
+            <div class="content ">
+                <strong>Hello</strong>
+                <p>小七</p>
+            </div>
+            <div class="arrow ">
+                <svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 492.004 492.004 ">
+    <path d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86
+                    19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z " /></svg>
+            </div>
+        </div>
+    </div>
+
     <div class="box">
         <div class="order-class">
             <a href="#" class="bar on">
@@ -123,8 +185,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="layui-table-first"><i class="layui-table-hd">订单编号</i><span
-                                        class="layui-table-bd">SZ2018974</span></td>
+                                <td class="layui-table-first"><i class="layui-table-hd">订单编号</i><span class="layui-table-bd">SZ2018974</span></td>
                                 <td><i class="layui-table-hd">商品名称</i><span class="layui-table-bd">Apple iPhoneX 128G
                                         红色特别版</span></td>
                                 <td><i class="layui-table-hd">商品数量</i><span class="layui-table-bd">200</span></td>
@@ -138,13 +199,11 @@
                                         12:00:00</span></td>
                                 <td><i class="layui-table-hd">订单状态</i><span class="layui-table-bd">待发货</span></td>
                                 <td class="layui-table-btn">
-                                    <button class="layui-btn layui-btn-normal layui-btn-small"
-                                        onclick="window.location.href='订单详情.html'">查看订单</button>
+                                    <button class="layui-btn layui-btn-normal layui-btn-small" onclick="window.location.href='订单详情.html'">查看订单</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="layui-table-first"><i class="layui-table-hd">订单编号</i><span
-                                        class="layui-table-bd">SZ2018974</span></td>
+                                <td class="layui-table-first"><i class="layui-table-hd">订单编号</i><span class="layui-table-bd">SZ2018974</span></td>
                                 <td><i class="layui-table-hd">商品名称</i><span class="layui-table-bd">Apple iPhoneX 128G
                                         红色特别版</span></td>
                                 <td><i class="layui-table-hd">商品数量</i><span class="layui-table-bd">200</span></td>
@@ -158,8 +217,7 @@
                                         12:00:00</span></td>
                                 <td><i class="layui-table-hd">订单状态</i><span class="layui-table-bd">已发货</span></td>
                                 <td class="layui-table-btn">
-                                    <button class="layui-btn layui-btn-normal layui-btn-small"
-                                        onclick="window.location.href='订单详情.html'">查看订单</button>
+                                    <button class="layui-btn layui-btn-normal layui-btn-small" onclick="window.location.href='订单详情.html'">查看订单</button>
                                 </td>
                             </tr>
 
@@ -174,22 +232,20 @@
         </div>
     </div>
     <script language="javascript" type="text/javascript">
-
-
         pointer('order-class', 121);
 
         function pointer(nav, classWid) {
-            var orderClass = $('.' + nav).children('a'),//导航dom
-                wid = classWid,//下标宽,也就是一条分类的宽
-                timeout,//定时器
-                Sub;//下标
+            var orderClass = $('.' + nav).children('a'), //导航dom
+                wid = classWid, //下标宽,也就是一条分类的宽
+                timeout, //定时器
+                Sub; //下标
 
             //找到on确定下标位置
-            $(orderClass).each(function () {
+            $(orderClass).each(function() {
                 if ($(this).hasClass('on')) Sub = $(this).index('.bar');
             });
 
-            setPointer(Sub * wid);//初始化
+            setPointer(Sub * wid); //初始化
 
             //设置下标位置
             function setPointer(px) {
@@ -204,6 +260,7 @@
             function subSlide(allDis) {
                 var distan = (allDis - getPointer()) / 10;
                 var i = 0;
+
                 function scro() {
                     i < 9 ? setPointer(getPointer() + distan) : setPointer(allDis);
                     if (i == 9) return;
@@ -214,12 +271,12 @@
             }
             //绑定事件
             orderClass.on({
-                'mouseover': function () {
+                'mouseover': function() {
                     clearTimeout(timeout);
                     var allDis = wid * orderClass.index(this);
                     subSlide(allDis);
                 },
-                'mouseout': function () {
+                'mouseout': function() {
                     clearTimeout(timeout);
                     var allDis = Sub * wid;
                     subSlide(allDis);
@@ -227,29 +284,28 @@
             });
 
         }
-
     </script>
     <script type="text/javascript" src="js/vue.min.js"></script>
     <script type="text/javascript" src="layui/layui.js"></script>
     <script type="text/javascript" src="js/fastclick.js"></script>
     <script type="text/javascript" src="js/admin.js"></script>
     <script>
-        layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function () {
+        layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function() {
             var $ = layui.jquery,
                 laydate = layui.laydate,
                 layer = layui.layer,
                 laypage = layui.laypage,
                 element = layui.element;
-            $(function () {
+            $(function() {
                 FastClick.attach(document.body);
             });
 
             // 分页
             laypage.render({
-                elem: 'table-pages'
-                , count: 5
-                , layout: ['prev', 'page', 'next', 'count', 'skip']
-                , jump: function (obj, first) {
+                elem: 'table-pages',
+                count: 5,
+                layout: ['prev', 'page', 'next', 'count', 'skip'],
+                jump: function(obj, first) {
                     //obj包含了当前分页的所有参数，比如：
                     console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
                     console.log(obj.limit); //得到每页显示的条数
@@ -264,15 +320,16 @@
 
             // 开始时间及截止时间
             laydate.render({
-                elem: '#time'
-                , range: true
-                , type: 'date'  // 'month'  'date' 'datetime'
-                , done: function (value, date, endDate) {
+                elem: '#time',
+                range: true,
+                type: 'date' // 'month'  'date' 'datetime'
+                    ,
+                done: function(value, date, endDate) {
                     console.log(value); //得到日期生成的值，如：2017-08-18
                     console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
                     console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
-                }
-                , trigger: 'click'
+                },
+                trigger: 'click'
             });
 
 
