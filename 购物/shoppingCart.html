@@ -23,11 +23,6 @@
                     <span class="line"></span>
                 </div>
             </div>
-            <!-- <div class="search">                   搜索栏
-                <svg class="icon" height="512" viewBox="0 0 515.558 515.558" width="512" xmlns="http://www.w3.org/2000/svg">
-        <path d="M378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333C418.889 93.963 324.928.002 209.444.002S0 93.963 0 209.447s93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564L378.344 332.78zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z" /></svg>
-                <input type="text" name="seach" placeholder="输入关键词..." />
-            </div> -->
         </div>
         <!--sidebar navigation -->
         <div class="sidebar__nav">
@@ -65,45 +60,73 @@
             </div>
             <div class="arrow ">
                 <svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 492.004 492.004 ">
-                    <path
-                        d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86
-                        19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z " />
-                </svg>
+        <path d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86
+                        19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z " /></svg>
             </div>
         </div>
     </div>
 
 
 
-    <div class="b">
-        <div class="cart">
-            <div class="cart-title">我的购物车</div>
-            <table class="cart-table">
-                <tr>
-                    <th width="60"><span class="cart-all">全选</span></th>
-                    <th>商品</th>
-                    <th width="120">单价</th>
-                    <th width="100">数量</th>
-                    <th width="120">小计</th>
-                    <th width="80">操作</th>
-                </tr>
-                <tr class="cart-item" v-for="(item,index) in list">
-                    <td><input type="checkbox" v-model="item.active" @click="item.active=!item.active"
-                            class="cart-check" />
-                    </td>
-                    <td class="cart-txt-left"><span class="cart-name">{{item.name}}</span></td>
-                    <td><span class="cart-price">{{item.price}}</span></td>
-                    <td><span class="cart-reduce"><button @click="item.num<=0?0:item.num-=1">-</button></span>
-                        <span class="cart-num"><input v-model.number="item.num"
+    <div class="cartcontainer">
+        <div class="cartHead">
+            <div style="border-right:1px lightgray solid" id="div1">
+                <img src="images/jd1.PNG" height="52px" width="153px"> &nbsp&nbsp&nbsp
+            </div>
+            <p id="headerTitle">
+                &nbsp&nbsp&nbsp&nbsp<a href="login.html" class="gray">商城首页</a>
+            </p>
+
+            <div id="gps1">
+                <img src="images/gps.png" height="20px" width="14px"> &nbsp北京
+            </div>
+
+
+            <div id="headerNav">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+                <a id="a1" href="login.html" class="gray">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp会员中心&nbsp&nbsp&nbsp&nbsp</a>
+                <a id="a2" href="login.html" class="gray">订单管理&nbsp&nbsp&nbsp&nbsp</a>
+                <a id="a3" href="login.html" class="gray">京东PLUS&nbsp&nbsp&nbsp&nbsp</a>
+                <a id="a4" href="login.html" class="gray">海外用户登录&nbsp&nbsp&nbsp&nbsp</a>
+                <a id="a5" href="login.html" class="gray">超级卖家&nbsp&nbsp&nbsp</a>
+                <a id="a55">|</a>
+                <a id="a6" href="login.html" class="gray">&nbsp&nbsp&nbsp帮助&nbsp&nbsp&nbsp&nbsp</a>
+                <a id="a7" href="login.html" class="gray">登录反馈</a>
+            </div>
+        </div>
+
+
+        <div class="b">
+            <div class="cart">
+                <div class="cart-title">我的购物车</div>
+                <table class="cart-table">
+                    <tr>
+                        <th width="60"><span class="cart-all">全选</span></th>
+                        <th>商品</th>
+                        <th width="120">单价</th>
+                        <th width="100">数量</th>
+                        <th width="120">小计</th>
+                        <th width="80">操作</th>
+                    </tr>
+                    <tr class="cart-item" v-for="(item,index) in list">
+                        <td><input type="checkbox" v-model="item.active" @click="item.active=!item.active" class="cart-check" />
+                        </td>
+                        <td class="cart-txt-left"><span class="cart-name">{{item.name}}</span></td>
+                        <td><span class="cart-price">{{item.price}}</span></td>
+                        <td><span class="cart-reduce"><input type="button" value="-"
+                                @click="item.num<=0?0:item.num-=1"></span>
+                            <span class="cart-num"><input v-model.number="item.num"
                                 :keyup="item.num=item.num<=0?0:item.num" /></span>
-                        <span class="cart-add"><button @click="item.num+=1">+</button></span>
-                    </td>
-                    <td><span class="cart-subtotal">{{item.num*item.price}}</span></td>
-                    <td><span class="cart-del"><button @click="remove(index)">移除</button></span></td>
-                </tr>
-                <tr class="cart-bottom">
-                    <td colspan="6">
-                        <span><button @click="removelot">删除选中的商品</button>
+                            <span class="cart-add"><input type="button" value="+" @click="item.num+=1"></span>
+                        </td>
+                        <td><span class="cart-subtotal">{{item.num*item.price}}</span></td>
+                        <td><span class="cart-del"><button @click="remove(index)">移除</button></span></td>
+                    </tr>
+                    <tr class="cart-bottom">
+                        <td colspan="6">
+                            <span><button @click="removelot">删除选中的商品</button>
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                             <span><button
                                     @click="removeAll">清空购物车</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -111,20 +134,17 @@
                             <span class="cart-bottom-span">已选择<span class="cart-total-num">{{count}}</span>件商品</span>
                             <span class="cart-bottom-span">总计：<span class="cart-total-price">{{total}}</span></span>
                             <span class="cart-bottom-btn">提交订单</span>
-                    </td>
-                </tr>
-            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-
-
-
     </div>
 
 
 
-
-    <script src="plugins/vue/vue.js"></script>
-    <script src="plugins/vue/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         var app = new Vue({
             el: ".b",
@@ -150,12 +170,12 @@
                 }],
             },
             methods: {
-                remove: function (index) { //移除单个
+                remove: function(index) { //移除单个
                     if (confirm('你确定要删除吗?')) {
                         this.list.splice(index, 1);
                     }
                 },
-                removelot: function () { //多选移除
+                removelot: function() { //多选移除
                     var list = []
                     for (let i = 0; i < this.list.length; i++) {
                         if (this.list[i].active == false)
@@ -163,21 +183,21 @@
                     }
                     this.list = list
                 },
-                removeAll: function () {
+                removeAll: function() {
                     if (confirm('你确定要删除吗?')) {
                         this.list = []
                     }
 
                 },
-                created: function () {
+                created: function() {
                     var that = this
-                    axios.get('待定localhost和具体地址').then(function (resp) {
+                    axios.get('待定localhost和具体地址').then(function(resp) {
                         that.list = resp.data; //先默认返回的文件中data是需要的商品数组,数组内的数据格式你根据后端返回的数据调一下
                     })
                 }
             },
             computed: {
-                total: function () { //计算总价
+                total: function() { //计算总价
                     let sum = 0;
                     for (let i = 0; i < this.list.length; i++) {
                         if (this.list[i].active)
@@ -185,7 +205,7 @@
                     }
                     return sum;
                 },
-                count: function () { //计算总数
+                count: function() { //计算总数
                     let sum = 0;
                     for (let i = 0;
                         (i < this.list.length); i++) {
