@@ -211,6 +211,7 @@ body {
     /* position: absolute; */
     display: grid;
     grid-template-columns: var(--sidebar-width) 1fr;
+    /* 这一句经常会影响布局 */
 }
 
 img {

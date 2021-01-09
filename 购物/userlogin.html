@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户页面</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <form action="demo.php" method="POST" class="lform" id="app">
+        <h2 align=center>用户登陆</h2>
+        <table>
+            <tr>
+                <td>用户名:</td>
+                <td><input type="text" name="username" autofocus="autofocus" placeholder="请输入用户名" maxlength="20"
+                        id="username" v-model="name"></td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td><input type="password" name="pwd" v-model="password"></td>
+            </tr>
+        </table>
+        <input class="lbutton" type="button" value="登入" @click="submit"><br>
+        <input class="lbutton" type="button" value="注册"><br>
+        <input class="lbutton" type="button" value="忘记密码"><br>
+
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                id: 1,
+                name: "",
+                password: ""
+            },
+            methods: {
+                submit: function () {
+                    console.log(this)
+                }
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>
