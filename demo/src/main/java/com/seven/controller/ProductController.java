@@ -1,5 +1,6 @@
 package com.seven.controller;
 
+import com.seven.models.resobjs.ErrnoRes;
 import com.seven.models.resobjs.ProductListRes;
 import com.seven.pojo.Product;
 import com.seven.service.ProductService;
@@ -36,5 +37,10 @@ public class ProductController {
     @GetMapping("/product/types")
     public List<String> productTypes() {
         return productService.getAllTypes();
+    }
+
+    @PostMapping("/product/onstore")
+    public Product productOnStore(@RequestParam("productId") int productId, @RequestParam("stat") int stat) {
+        return productService.ProductOnStore(productId, stat);
     }
 }
