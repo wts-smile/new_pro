@@ -22,6 +22,7 @@ public class UserController {
     AddrService addrService;
 
     @PostMapping("/user/login")
+    @CrossOrigin
     public LoginRes userLogin(LoginReq req) {
         String name = req.getUsername();
         String pass = req.getPassword();

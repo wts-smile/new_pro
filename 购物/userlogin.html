@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="demo.php" method="POST" class="lform" id="app">
+    <form method="POST" class="lform" id="app">
         <h2 align=center>用户登陆</h2>
         <table>
             <tr>
@@ -19,32 +19,42 @@
             </tr>
             <tr>
                 <td>密码:</td>
-                <td><input type="password" name="pwd" v-model="password"></td>
+                <td><input type="password" name="password" v-model="password"></td>
             </tr>
         </table>
-        <input class="lbutton" type="button" value="登入" @click="submit"><br>
+        <input class="lbutton" type="button" value="登入" onclick="login()"><br>
         <input class="lbutton" type="button" value="注册"><br>
         <input class="lbutton" type="button" value="忘记密码"><br>
 
     </form>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-        var app = new Vue({
-            el: "#app",
-            data: {
-                id: 1,
-                name: "",
-                password: ""
-            },
-            methods: {
-                submit: function () {
-                    console.log(this)
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+        function login() {
+            $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/user/login" ,//url
+                data: $('#app').serialize(),
+                success: function (result) {
+					if(result.errno==0)
+					{
+                    //console.log(result.user);//打印服务端返回的数据(调试用)
+					sessionStorage.setItem("cuser",JSON.stringify(result.user));
+					window.location = "home.html";
+					//alert(result.resultCode);
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    }}
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
                 }
-            },
-
-        })
+            });
+        }
     </script>
-
 </body>
 
 </html>

@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         HashMap<String, Object> map = new HashMap<>();
         map.put("name", name);
         List<User> users = userDao.selectByMap(map);
-        if (users.size() == 0) return null;
+        if (users.size() == 0 || pass.isEmpty()) return null;
         User u = users.iterator().next();
         if (pass.equals(u.getPass())) {
             return u;

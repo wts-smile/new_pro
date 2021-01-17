@@ -89,23 +89,9 @@
         <div class="w">
             <div class="dropdown">
                 <div class="dt">全部商品分类</div>
-                <div class="dd">
+                <div id="typenav" class="dd">
                     <ul>
-                        <li><a href="#">一体机、台式机</a> </li>
-                        <li><a href="#">手机</a>、 <a href="#">数码</a>、<a href="#">通信</a> </li>
-                        <li><a href="#">游戏本、办公本</a> </li>
-                        <li><a href="#">平板电脑</a> </li>
-                        <li><a href="#">显卡、处理器</a> </li>
-                        <li><a href="#">音箱、音响</a> </li>
-                        <li><a href="#">蓝牙耳机、接收器</a> </li>
-                        <li><a href="#">有线耳机、解码器</a> </li>
-                        <li><a href="#">游戏鼠标、键盘</a> </li>
-                        <li><a href="#">无线键盘、鼠标</a> </li>
-                        <li><a href="#">4k屏、电竞屏</a> </li>
-                        <li><a href="#">手机壳、挂件</a> </li>
-                        <li><a href="#">充电宝</a> </li>
-                        <li><a href="#">电源、充电头</a> </li>
-                        <li><a href="#">数据线、转接器</a> </li>
+                        <li v-for="type in types">{{type}}</li>
 
                     </ul>
                 </div>
@@ -440,6 +426,12 @@
                 next() {
                     this.index++;
                 }
+            }
+        });
+		const app2 = new Vue({
+            el: "#typenav",
+            data: {
+                types:["11","22","33"]
             }
         });
     </script>
