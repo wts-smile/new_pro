@@ -1,0 +1,43 @@
+.box {
+    margin: 200px auto;
+    border: 1px solid #666;
+    height: 800px;
+    width: 800px;
+}
+
+.header {
+    height: 80px;
+    border-bottom: solid 1px #666;
+    padding-left: 30px;
+    line-height: 80px;
+}
+
+.nav {
+    height: 80px;
+    border-bottom: solid 1px #666;
+    padding-left: 30px;
+}
+
+.nav h3 {
+    margin-top: 15px;
+}
+
+.nav p {
+    margin-top: 15px;
+}
+
+section h3 {
+    padding-left: 30px;
+    margin-top: 15px;
+}
+
+section ul {
+    float: left;
+    width: 399px;
+    box-sizing: border-box;
+    padding: 20px 30px;
+}
+
+section ul li {
+    margin-top: 15px;
+}

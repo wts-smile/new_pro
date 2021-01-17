@@ -1,0 +1,258 @@
+body, ol, ul, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+body {
+    font: 12px "Microsoft YaHei", "SimSun", "Arial Narrow", HELVETICA;
+    -webkit-text-size-adjust: 100%;
+    color: #666;
+    background-color: #fafafa;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+    border: none;
+}
+
+textarea, select {
+    font: 14px "Microsoft YaHei", "SimSun", "Arial Narrow", HELVETICA;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:focus {
+    text-decoration: none;
+}
+
+em, i {
+    font-style: normal;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    display: block;
+    _display: inline;
+    border: 0;
+    vertical-align: middle;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+p {
+    word-wrap: break-word;
+}
+
+input, button, select {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    font: 14px "Microsoft YaHei", "SimSun", "Arial Narrow", HELVETICA;
+}
+
+html {
+    min-width: 1100px;
+}
+
+.the-address, .the-address .adr-tent, .the-address .adr-tent .adr-table .table-thead .thh, .the-address .adr-tent .adr-table .table-tbody, .the-address .adr-tent .adr-table .table-tbody .item, .the-address .adr-tent .adr-table .table-tbody .item .tdd {
+    overflow: hidden;
+}
+
+.the-address {
+    margin: 0 auto;
+}
+
+.select {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.setChe, .setDefChe {
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: .1rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
+    background-color: transparent;
+    border-radius: 0;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.setChe {
+    width: 18px;
+    height: 18px;
+}
+
+.setDefChe {
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    padding-right: 30px;
+    background: url("../images/ico-xiala.png") no-repeat scroll right center transparent;
+    cursor: pointer;
+}
+
+[v-cloak] {
+    display: none !important;
+}
+
+.the-address {
+    width: 800px;
+    margin-top: 40px;
+    background-color: #fff;
+}
+
+.the-address .adr-tol {
+    width: 100%;
+    height: 42px;
+    background-color: #e3f2fd;
+    margin-bottom: 20px;
+}
+
+.the-address .adr-tol .tkk {
+    height: 42px;
+    line-height: 42px;
+    margin-left: 5px;
+}
+
+.the-address .adr-tol .ico {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../images/i-ico-tip.png");
+    margin-left: 15px;
+    margin-top: 13px;
+    float: left;
+}
+
+.the-address .adr-tent {
+    height: auto;
+}
+
+.the-address .adr-tent .adr-table {
+    width: 100%;
+}
+
+.the-address .adr-tent .adr-table .table-thead {
+    width: 100%;
+    height: 39px;
+    border-bottom: 1px solid #dcdee3;
+    background-color: #ebecf0;
+}
+
+.the-address .adr-tent .adr-table .table-thead .thh {
+    text-align: left;
+    border: 1px solid #dcdee3;
+}
+
+.the-address .adr-tent .adr-table .table-thead .thh .tn {
+    padding: 12px 15px;
+    display: inline-block;
+}
+
+.the-address .adr-tent .adr-table .table-tbody {
+    width: 100%;
+    height: auto;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item {
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item:hover {
+    background-color: #ebecf0;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd {
+    box-sizing: border-box;
+    border: 1px solid #dcdee3;
+    border-top-color: transparent;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .ti {
+    padding: 12px 14px;
+    display: inline-block;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .tt {
+    min-width: 50px;
+    display: inline-block;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .handle {
+    width: 70px;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .handle>* {
+    display: inline-block;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .handle .line {
+    margin: 0 5px;
+    color: #dcdee3;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .handle .a-chg:hover {
+    color: #f56954;
+    text-decoration: underline;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .handle .i-del {
+    cursor: pointer;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .handle .i-del:hover {
+    color: #f56954;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .set-def {
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .set-def:hover {
+    color: #f56954;
+}
+
+.the-address .adr-tent .adr-table .table-tbody .item .tdd .set-def.cur {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #f56954;
+    cursor: default;
+    border-radius: 3px;
+    background: #ffd6cc;
+    color: #e44135;
+    text-align: center;
+}
+
+/*# sourceMappingURL=style.cssmap */

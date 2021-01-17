@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>管理商品</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/css2.css" />
+    <link rel="stylesheet" href="css/sideBar_style.css">
+</head>
+
+<body class="myborder">
+
+    <div class="sidebar">
+        <!-- sidebartop -->
+        <div class="sidebar__top">
+            <div class="top">
+                <h2>管理员面板</h2>
+                <div class="humburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--sidebar navigation -->
+        <div class="sidebar__nav">
+            <h5>导航菜单</h5>
+            <ul class="sidebar__menu">
+                <li class="sidebar__menu--item">
+                    <span>订单管理</span>
+                </li>
+                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                    <span>商品管理</span>
+                </li>
+                <li class=" sidebar__menu--item ">
+                    <span>新增商品</span>
+                </li>
+                <li class="sidebar__menu--item ">
+                    <span>用户管理</span>
+                </li>
+                <li class="sidebar__menu--item " ">
+                    <span>个人资料</span>
+                </li>
+                <!-- <li class=" sidebar__menu--item "> -->
+                <li class=" sidebar__menu--item ">
+                    <span>修改密码</span>
+                </li>
+            </ul>
+        </div>
+        <!-- sidebar profile -->
+        <div class=" sidebar__profile ">
+            <div class=" avatar ">
+                <img src=" img/sideBar1.jpg " alt=" ">
+            </div>
+            <div class=" content ">
+                <strong>Hello</strong>
+                <p>小七</p>
+            </div>
+            <div class=" arrow ">
+                <svg xmlns=" http://www.w3.org/2000/svg " viewBox=" 0 0 492.004 492.004 ">
+    <path d=" M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124
+                    16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86
+                    11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032
+                    7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872
+                    7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z " /></svg>
+            </div>
+        </div>
+    </div>
+
+    <div class=" b ">
+        <div class=" cart ">
+            <div class=" cart-title ">搜索结果</div>
+            <table class=" cart-table ">
+                <tr>
+
+                    <th>商品</th>
+                    <th width=" 120 ">单价</th>
+                    <th width=" 100 ">库存</th>
+                    <th width=" 80 ">操作</th>
+                </tr>
+                <tr class=" cart-item " v-for=" (item,index) in list ">
+                    <td class=" cart-txt-left "><span class=" cart-name "><a href=" # "
+                                style=" text-decoration: none; ">{{item.name}}</a> </span></td>
+                    <td><span class=" cart-price ">{{item.price}}</span></td>
+                    <td>
+                        <span class=" cart-num ">{{item.num}}</span>
+                    </td>
+                    <td><span class=" cart-del "><button @click=" remove(index) ">移除</button></span></td>
+                </tr>
+
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+
+    <script src=" plugins/vue/vue.js "></script>
+    <script src=" plugins/vue/axios.js "></script>
+
+    <script>
+        var app = new Vue({
+            el: " .b ",
+            data: {
+                list: [{
+                    id: 1,
+                    name: " airpodspro ",
+                    price: 1999,
+                    num: 1,
+                    active: true
+                }, {
+                    id: 2,
+                    name: " macbookair ",
+                    price: 15999,
+                    num: 2,
+                    active: false
+                }, {
+                    id: 3,
+                    name: " ipadmini ",
+                    price: 3999,
+                    num: 3,
+                    active: true
+                }],
+            },
+            methods: {
+                remove: function (index) { //移除单个
+                    if (confirm('你确定要删除吗?')) {
+                        this.list.splice(index, 1);
+                    }
+                },
+                removelot: function () { //多选移除
+                    var list = []
+                    for (let i = 0; i < this.list.length; i++) {
+                        if (this.list[i].active == false)
+                            list.push(this.list[i])
+                    }
+                    this.list = list
+                },
+                removeAll: function () {
+                    if (confirm('你确定要删除吗?')) {
+                        this.list = []
+                    }
+
+                },
+                created: function () {
+                    var that = this
+                    axios.get('待定localhost和具体地址').then(function (resp) {
+                        that.list = resp.data; //先默认返回的文件中data是需要的商品数组,数组内的数据格式你根据后端返回的数据调一下
+                    })
+                }
+            },
+            computed: {
+                total: function () { //计算总价
+                    let sum = 0;
+                    for (let i = 0; i < this.list.length; i++) {
+                        if (this.list[i].active)
+                            sum += this.list[i].price * this.list[i].num;
+                    }
+                    return sum;
+                },
+                count: function () { //计算总数
+                    let sum = 0;
+                    for (let i = 0;
+                        (i < this.list.length); i++) {
+                        if (this.list[i].active)
+                            sum += this.list[i].num;
+                    }
+                    return sum;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

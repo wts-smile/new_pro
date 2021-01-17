@@ -19,9 +19,27 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductDao productDao;
 
+
+
     @Override
     public Product getProductById(int id) {
         return productDao.selectById(id);
+    }
+
+    @Override
+    public Product addProduct(Product product) {
+        int rowEffect = productDao.insert(product);
+        if(rowEffect > 0)
+            return product;
+        return null;
+    }
+
+    @Override
+    public Product setProduct(Product product) {
+        int rowEffect = productDao.updateById(product);
+        if(rowEffect > 0)
+            return product;
+        return null;
     }
 
     @Override

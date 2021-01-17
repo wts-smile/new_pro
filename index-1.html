@@ -1,0 +1,1085 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>未知 </title></head><body>
+<h1 id="_1">数据库</h1>
+<p>用户（id，用户名，密码，资料，余额，角色【系统用户1，管理员2，游客3】）</p>
+<p>地址（id，用户名，地址， 是否默认）</p>
+<p>商品（id，商品名称，商品类别，商品图片，商品详情，状态【上架，下架】，销量）</p>
+<p>订单（id，用户名，商品id，状态【1-未付款，2-已付款，3-已取消】，开始时间，结束时间）</p>
+<p>购物车（id，用户名，商品id， 数量）</p>
+<p>mysql用户名root密码action123</p>
+<h1 id="_2">前台功能</h1>
+<h2 id="post-userlogin">用户登录 POST /user/login</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>错误码，0表示无错误</td>
+</tr>
+<tr>
+<td>data</td>
+<td>User</td>
+<td>用户信息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-userregister">注册 POST /user/register</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>checkpass</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>detail</td>
+<td>string</td>
+<td>详细信息</td>
+</tr>
+<tr>
+<td>role</td>
+<td>int</td>
+<td>1系统用户2管理员3游客</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>错误码，0表示无错误</td>
+</tr>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>错误描述</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-userchangepass">修改密码 POST /user/changepass</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>原密码</td>
+</tr>
+<tr>
+<td>newpass</td>
+<td>string</td>
+<td>新密码</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>UserAndAddr</td>
+<td>用户信息+地址</td>
+</tr>
+</tbody>
+</table>
+<h2 id="get-userget">个人资料 GET /user/get</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uid</td>
+<td>int</td>
+<td>用户id</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>UserAndAddr</td>
+<td>用户信息+地址</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ps">PS. 自定义的数据结构</h2>
+<p>user的结构</p>
+<p><code>{
+    "id": 1,
+    "name": "dzy",
+    "pass": "123",
+    "detail": "hahahahaha", 
+    "balance": 100.0,
+    "role": 1
+}</code></p>
+<p>UserAndAddr的结构</p>
+<p><code>json
+{
+    "id": 1,
+    "name": "dzy",
+    "pass": "321",
+    "detail": "hahahahaha",
+    "balance": 97.0,
+    "role": 1,
+    "addr": [
+        {
+            "id": 1,
+            "name": "dzy",
+            "addr": "testaddr1",
+            "isdefault": 1
+        },
+        {
+            "id": 2,
+            "name": "dzy",
+            "addr": "updaddr2",
+            "isdefault": 0
+        }
+    ]
+}</code></p>
+<h1 id="_3">商品展示</h1>
+<h2 id="get-productlist">热销商品展示 GET /product/list</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>页大小</td>
+</tr>
+<tr>
+<td>pageNum</td>
+<td>int</td>
+<td>第几页</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total</td>
+<td>int</td>
+<td>商品总数</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>页大小</td>
+</tr>
+<tr>
+<td>pageNum</td>
+<td>int</td>
+<td>第几页</td>
+</tr>
+<tr>
+<td>productList</td>
+<td>Product数组</td>
+<td>该页的商品</td>
+</tr>
+</tbody>
+</table>
+<h2 id="get-productlisttype">分类商品展示 GET /product/list/type</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>productType</td>
+<td>string</td>
+<td>商品类型</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>页大小</td>
+</tr>
+<tr>
+<td>pageNum</td>
+<td>int</td>
+<td>第几页</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total</td>
+<td>int</td>
+<td>商品总数</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+<td>页大小</td>
+</tr>
+<tr>
+<td>pageNum</td>
+<td>int</td>
+<td>第几页</td>
+</tr>
+<tr>
+<td>productList</td>
+<td>Product数组</td>
+<td>该页的商品</td>
+</tr>
+</tbody>
+</table>
+<h2 id="get-productget">商品详情 GET /product/get</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>productId</td>
+<td>int</td>
+<td>商品id</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product</td>
+<td>Product</td>
+<td>商品对象</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">辅助接口</h2>
+<h3 id="get-producttypes">获取所有商品分类 GET /product/types</h3>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不需要参数</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>typeList</td>
+<td>string数组</td>
+<td>所有的分类</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ps_1">PS. 自定义的数据结构</h2>
+<p>Product</p>
+<p><code>{
+    "id": 3,
+    "name": "name4",
+    "ptype": "type2",
+    "pic": "1.png, 2.png",
+    "detail": "detail",
+    "price": 3.0,
+    "status": 1,
+    "salecnt": 1
+}</code></p>
+<h1 id="_5">购物车</h1>
+<h2 id="post-cartadd">把商品添加到购物车 POST /cart/add</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>int</td>
+<td>商品id</td>
+</tr>
+<tr>
+<td>cnt</td>
+<td>int</td>
+<td>商品数量</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>0成功1失败</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-cartedit">编辑购物车 POST /cart/edit</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>idList</td>
+<td>string</td>
+<td>选中要删除的商品的id，用逗号隔开</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>0成功1失败</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-cartpay">结算 POST /cart/pay</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>idList</td>
+<td>string</td>
+<td>选中商品的id，用逗号隔开</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>0成功1失败</td>
+</tr>
+</tbody>
+</table>
+<h2 id="get-cartlist">列出购物车内所有商品 GET /cart/list</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<p>response 示例</p>
+<p><code>json
+[
+    {
+        "id": 1,    // 购物车项id
+        "count": 2,
+        "product": {
+            "id": 3,
+            "name": "name4",
+            "ptype": "type2",
+            "pic": "1.png, 2.png",
+            "detail": "detail",
+            "price": 3.0,
+            "status": 1,
+            "salecnt": 1
+        }
+    },
+    {
+        "id": 2,
+        "count": 1,
+        "product": {
+            "id": 4,
+            "name": "name5",
+            "ptype": "type2",
+            "pic": "1.png, 2.png",
+            "detail": "detail",
+            "price": 3.0,
+            "status": 1,
+            "salecnt": 1
+        }
+    }
+]</code></p>
+<h1 id="_6">订单</h1>
+<h2 id="get-orderlist">订单列表 GET /order/list</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<p>response 实例</p>
+<p><code>json
+[
+    {
+        "orderId": 1,
+        "username": "dzy",
+        "product": {
+            "id": 3,
+            "name": "name4",
+            "ptype": "type2",
+            "pic": "1.png, 2.png",
+            "detail": "detail",
+            "price": 3.0,
+            "status": 1,
+            "salecnt": 1
+        },
+        "num": 2,
+        "status": 2,    // 1-未支付 2-已支付 3-已取消
+        "startTime": "2020-12-31 16:23:34",
+        "endTime": "2020-12-31-19:57:49"
+    },
+    {
+        "orderId": 2,
+        "username": "dzy",
+        "product": {
+            "id": 4,
+            "name": "name5",
+            "ptype": "type2",
+            "pic": "1.png, 2.png",
+            "detail": "detail",
+            "price": 3.0,
+            "status": 1,
+            "salecnt": 1
+        },
+        "num": 1,
+        "status": 1,
+        "startTime": "2020-12-31 16:23:34",
+        "endTime": null
+    },
+    {
+        "orderId": 5,
+        "username": "dzy",
+        "product": {
+            "id": 5,
+            "name": "name6",
+            "ptype": "type3",
+            "pic": "1.png, 2.png",
+            "detail": "detail",
+            "price": 3.0,
+            "status": 1,
+            "salecnt": 1
+        },
+        "num": 1,
+        "status": 2,
+        "startTime": "2020-12-31-19:26:16",
+        "endTime": "2020-12-31-19:57:49"
+    }
+]</code></p>
+<h1 id="_7">地址管理</h1>
+<h2 id="get-addrlist">列出用户的所有地址 GET /addr/list</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>int</td>
+<td>用户id</td>
+</tr>
+</tbody>
+</table>
+<p>response 示例</p>
+<p><code>json
+[
+    {
+        "id": 1,
+        "name": "dzy",
+        "addr": "testaddr1",
+        "isdefault": 1
+    },
+    {
+        "id": 2,
+        "name": "dzy",
+        "addr": "updaddr2",
+        "isdefault": 0
+    },
+    {
+        "id": 3,
+        "name": "dzy",
+        "addr": "testaddr3",
+        "isdefault": 0
+    }
+]</code></p>
+<h2 id="post-addradd">增加地址 POST /addr/add</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>int</td>
+<td>用户id</td>
+</tr>
+<tr>
+<td>addr</td>
+<td>string</td>
+<td>新增的地址</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>0成功1失败</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-addrdel">删除地址 POST /addr/del</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aid</td>
+<td>int</td>
+<td>地址id</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>0成功1失败</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-addrupd">修改地址 POST /addr/upd</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aid</td>
+<td>int</td>
+<td>地址id</td>
+</tr>
+<tr>
+<td>addr</td>
+<td>string</td>
+<td>新地址</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>0成功1失败</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-addrsetdefault">设置默认地址 POST /addr/setdefault</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aid</td>
+<td>int</td>
+<td>地址id</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>0成功1失败</td>
+</tr>
+</tbody>
+</table>
+<h1 id="post-pay">支付 POST /pay</h1>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>productId</td>
+<td>int</td>
+<td>商品id</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>cnt</td>
+<td>int</td>
+<td>商品个数</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>errno</td>
+<td>int</td>
+<td>0成功1失败</td>
+</tr>
+</tbody>
+</table>
+<p>这里的支付是直接在商品页付款，相当于立即购买；而购物车中的结算是支付购物车中的选中项。</p>
+<h1 id="post-userrecharge">充值 POST /user/recharge</h1>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>money</td>
+<td>double</td>
+<td>充值金额</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<p>response 示例</p>
+<p><code>json
+{
+    "id": 1,
+    "name": "dzy",
+    "pass": "321",
+    "detail": "hahahahaha",
+    "balance": 107.0,
+    "role": 1,
+    "addr": [
+        {
+            "id": 1,
+            "name": "dzy",
+            "addr": "testaddr1",
+            "isdefault": 1
+        },
+        {
+            "id": 2,
+            "name": "dzy",
+            "addr": "updaddr2",
+            "isdefault": 0
+        }
+    ]
+}</code></p>
+<h1 id="_8">商品管理</h1>
+<h2 id="get-productlist_1">查询所有商品 GET /product/list</h2>
+<p>同 [商品展示 -&gt; 热销商品展示 GET]</p>
+<h2 id="get-productget_1">查询商品 GET /product/get</h2>
+<p>同 [商品展示 -&gt; 商品详情 GET]</p>
+<h2 id="post">新增商品 POST</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product</td>
+<td>Product</td>
+<td>商品对象,其中的id属性为要修改的商品id</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product</td>
+<td>Product</td>
+<td>新增的product对象</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post_1">修改商品 POST</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product</td>
+<td>Product</td>
+<td>商品对象,其中的id属性为要修改的商品id</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product</td>
+<td>Product</td>
+<td>更新后的product对象</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-productonstore">上下架商品 POST /product/onstore</h2>
+<p>request</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>productId</td>
+<td>int</td>
+<td>商品id</td>
+</tr>
+<tr>
+<td>stat</td>
+<td>int</td>
+<td>1上架0下架</td>
+</tr>
+</tbody>
+</table>
+<p>response</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product</td>
+<td>Product</td>
+<td>更新后的product对象</td>
+</tr>
+</tbody>
+</table>
+</body></html>

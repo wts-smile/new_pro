@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户订单详情</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="layui/css/layui.css" />
+    <link rel="stylesheet" href="css/css3.css">
+    <link rel="stylesheet" href="css/sideBar_style.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <!-- sidebartop -->
+        <div class="sidebar__top">
+            <div class="top">
+                <h2>用户面板</h2>
+                <div class="humburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--sidebar navigation -->
+        <div class="sidebar__nav">
+            <h5>导航菜单</h5>
+            <ul class="sidebar__menu">
+                <li class="sidebar__menu--item">
+                    <span>商场主页</span>
+                </li>
+                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                    <span>我的订单</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>我的购物车</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>收货地址管理</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>个人资料</span>
+                </li>
+                <!-- <li class="sidebar__menu--item"> -->
+                <li class="sidebar__menu--item">
+                    <span>修改密码</span>
+                </li>
+            </ul>
+        </div>
+        <!-- sidebar profile -->
+        <div class="sidebar__profile ">
+            <div class="avatar ">
+                <img src="img/sideBar1.jpg " alt=" ">
+            </div>
+            <div class="content ">
+                <strong>Hello</strong>
+                <p>小七</p>
+            </div>
+            <div class="arrow ">
+                <svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 492.004 492.004 ">
+                    <path
+                        d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86
+                19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z " />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="header">
+            <h3>订单详情：新订单</h3>
+        </div>
+        <div class="nav">
+            <h3>收货地址</h3>
+            <p>收货联系方式:</p>
+        </div>
+        <section>
+            <h3>订单详情</h3>
+            <ul>
+                <li>订单编号:</li>
+                <li>商品合计:</li>
+                <li>应付金额:</li>
+                <li>发货时间:</li>
+                <li>物流单号:</li>
+                <li>收货时间:</li>
+                <li>支付状态:</li>
+            </ul>
+            <ul>
+                <li>下单时间:</li>
+                <li>店铺合计金额:</li>
+                <li>发票抬头:</li>
+                <li>物流公司:</li>
+                <li>物流联系:方式</li>
+                <li>支付金额:</li>
+                <li>支付时间:</li>
+            </ul>
+            <table class="layui-table" lay-size="sm">
+                <colgroup>
+                    <col>
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
+                </colgroup>
+                <thead>
+                    <tr style="height: 100px;">
+                        <th>商品</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>商品总价</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="height: 100px;">
+                        <td>暗影精灵6</td>
+                        <td>￥15999</td>
+                        <td>3件</td>
+                        <td>￥47997</td>
+                        <td>立即支付</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <script></script>
+</body>
+
+</html>

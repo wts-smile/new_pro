@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>极客商城-商品详情页</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/good1.css">
+    <link rel="stylesheet" href="./css/css2.css">
+</head>
+
+<body>
+    <!-- 头部信息 -->
+    <div class="header_con">
+        <div class="header">
+            <div class="welcome">欢迎来到极客商城!</div>
+            <div class="user_login">
+                <a href="">登录</a>
+                <span>|</span>
+                <a href="">注册</a>
+                <span>|</span>
+                <a href="">我的购物车</a>
+                <span>|</span>
+                <a href="">我的订单</a>
+            </div>
+        </div>
+    </div>
+    <div class="search_bar clearfix">
+        <a href="#" class="logo fl"><img src="img/logo.png"></a>
+        <div class="search_con fl">
+            <input type="text" class="input_text fl" placeholder="搜索商品">
+            <input type="button" class="input_btn fr" value="搜索">
+        </div>
+        <div class="guest_card fr">
+            <a href="#" class="card_name fl">我的购物车</a>
+        </div>
+    </div>
+    <!-- 商品信息栏 -->
+    <div class="navbar_con">
+        <div class="navbar clearfix">
+            <div class="subnav_con fl">
+                <h1>全部商品分类 <i></i></h1>
+            </div>
+            <ul class="navlist fl">
+                <li><a href="">首页</a></li>
+                <li><a href="">手机卖场</a></li>
+                <li><a href="">抽奖</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="submena clearfix">
+        <a href=" ">全部分类</a>
+        <span>></span>
+        <a href=" ">商品详情</a>
+    </div>
+    <div class="center_con clearfix" id="app">
+        <div class="main_menu fl"><img :src="bgurl"></div>
+        <div class="goods_detail_list fr">
+            <h3>{{name}}</h3>
+            <p>{{message}}</p>
+            <div class="prize_bar">
+                <div class="show_prize fl">￥<em>{{price}}</em></div>
+                <div class="show_unit fl">单位：5000g</div>
+            </div>
+            <div class="goods_num">
+                <table>
+                    <tr>
+                        <td><span>数量：</span></td>
+                        <td><span class="cart-reduce"><button @click="num<=1?1:num-=1">-</button></span>
+                            <span class="cart-num"><input type="text" v-model.number="num"
+                                    :keyup="num=num<=1?1:num" /></span>
+                            <span class="cart-add"><button @click="num+=1">+</button></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>地址：</td>
+                        <td><select name="addr" id="addr" v-model="address">
+                                <option value="linye">北京林业大学南门</option>
+                                <option value="home">北京林业大学12号楼</option>
+                            </select></td>
+                    </tr>
+                </table>
+
+
+
+            </div>
+            <div class="total">总价：<em>{{price*num}}元</em></div>
+            <div class="operate_btn">
+                <a href="" class="buy_btn">立即购买</a>
+                <a href="" class="add_cart">加入购物车</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                id: 1,
+                message: "暗影精灵6到飞起，全新升级10代酷睿处理器！轻薄新外观搭载酷凉风暴散热模组！",
+                name: "暗影精灵6",
+                bgurl: "img/computer.jpg",
+                num: 1,
+                price: 7800,
+                address: "home",
+            },
+            methods: {
+                submit: function () {
+                    console.log(this)
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

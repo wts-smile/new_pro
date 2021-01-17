@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理商品</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/sideBar_style.css">
+    <style>
+        .main {
+            width: 600px;
+            height: 40px;
+            margin: 200px auto;
+        }
+
+        input[type="text"] {
+            width: 470px;
+            height: 37px;
+            border: 1px solid #37aba1;
+            outline: none;
+        }
+
+        input[type="button"] {
+            width: 100px;
+            height: 38px;
+            background-color: #37aba1;
+            border: 0;
+            font: 14px/38px 'Microsoft YaHei UI';
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <!-- sidebartop -->
+        <div class="sidebar__top">
+            <div class="top">
+                <h2>管理员面板</h2>
+                <div class="humburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--sidebar navigation -->
+        <div class="sidebar__nav">
+            <h5>导航菜单</h5>
+            <ul class="sidebar__menu">
+                <li class="sidebar__menu--item">
+                    <span>订单管理</span>
+                </li>
+                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                    <span>商品管理</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>新增商品</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>用户管理</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>个人资料</span>
+                </li>
+                <!-- <li class="sidebar__menu--item"> -->
+                <li class="sidebar__menu--item">
+                    <span>修改密码</span>
+                </li>
+            </ul>
+        </div>
+        <!-- sidebar profile -->
+        <div class="sidebar__profile ">
+            <div class="avatar ">
+                <img src="img/sideBar1.jpg " alt=" ">
+            </div>
+            <div class="content ">
+                <strong>Hello</strong>
+                <p>小七</p>
+            </div>
+            <div class="arrow ">
+                <svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 492.004 492.004 ">
+                    <path
+                        d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86
+                    19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z " />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <input type="text" placeholder="搜索商品">
+        <input type="button" value="搜索">
+    </div>
+</body>
+
+</html>

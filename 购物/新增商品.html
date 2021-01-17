@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>新增商品</title>
+    <link href="css/merchandise.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sideBar_style.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <!-- sidebartop -->
+        <div class="sidebar__top">
+            <div class="top">
+                <h2>管理员面板</h2>
+                <div class="humburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--sidebar navigation -->
+        <div class="sidebar__nav">
+            <h5>导航菜单</h5>
+            <ul class="sidebar__menu">
+                <li class="sidebar__menu--item">
+                    <span>订单管理</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>商品管理</span>
+                </li>
+                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                    <span>新增商品</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>用户管理</span>
+                </li>
+                <li class="sidebar__menu--item">
+                    <span>个人资料</span>
+                </li>
+                <!-- <li class="sidebar__menu--item"> -->
+                <li class="sidebar__menu--item">
+                    <span>修改密码</span>
+                </li>
+            </ul>
+        </div>
+        <!-- sidebar profile -->
+        <div class="sidebar__profile ">
+            <div class="avatar ">
+                <img src="img/sideBar1.jpg " alt=" ">
+            </div>
+            <div class="content ">
+                <strong>Hello</strong>
+                <p>小七</p>
+            </div>
+            <div class="arrow ">
+                <svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 492.004 492.004 ">
+    <path d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86
+                    19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z " /></svg>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="box">
+        <div class="lab" id="app">
+            <p>
+                <label>商品类目：</label>
+                <select name="type" id="type">
+					<option value="mobilephone">手机</option>
+					<option value="earphone">耳机</option>
+					<option value="computer">电脑</option>
+					<option value="computer parts">电脑配件</option>
+					<option value="phone parts">手机配件</option>
+				</select>
+            </p>
+            <p>
+                <label>商品名称：</label>
+                <input type="text" value="" placeholder="请输入商品标题" v-model="name" />
+            </p>
+            <p>
+                <label>商品卖点：</label>
+                <input type="text" value="" v-model="message" />
+            </p>
+            <p>
+                <label>商品价格：</label>
+                <input type="text" value="" v-model="price" placeholder="请输入商品价格" />
+            </p>
+            <p>
+                <label>库存数量：</label>
+                <input type="text" value="" v-model="count" />
+            </p>
+            <p>
+                <label>商品图片：</label>
+                <input type="file" value="上传图片" />
+            </p>
+            <p><button>确认</button></p>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                id: 1,
+                message: "暗影精灵6到飞起，全新升级10代酷睿处理器！轻薄新外观搭载酷凉风暴散热模组！",
+                name: "暗影精灵6",
+                bgurl: "img/computer.jpg",
+                count: 1,
+                price: 7800,
+            },
+            methods: {
+                submit: function() {
+                    console.log(this)
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

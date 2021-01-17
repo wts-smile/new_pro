@@ -1,0 +1,183 @@
+div.a {
+    border: 1px white solid;
+    height: 60px;
+    width: 100%;
+}
+
+div.b {
+    border: 1px white solid;
+    height: 640px;
+    width: 100%;
+    background-size: 100% 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.myborder {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+div.c {
+    border: 1px white solid;
+    height: 110px;
+    width: 100%;
+}
+
+div.d {
+    text-align: center;
+}
+
+#gps1 {
+    vertical-align: middle;
+    float: left;
+    margin-left: 50px;
+    margin-top: 15px;
+}
+
+#div_login {
+    border: 1px white solid;
+    height: 540px;
+    width: 380px;
+    margin-top: 50px;
+    margin-left: 900px;
+    background-color: white;
+}
+
+#div1,
+#headerTitle {
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+}
+
+#headerTitle {
+    color: dimgray;
+}
+
+#div1 {
+    margin-left: 30px;
+}
+
+#headerNav {
+    display: inline-block;
+    float: left;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+
+#a1,
+#a2,
+#a3,
+#a4,
+#a5,
+#a6,
+#a7 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: dimgray;
+}
+
+#b1,
+#b2,
+#b3,
+#b4,
+#b5,
+#b6,
+#b7,
+#b8,
+#b9,
+#b10,
+#b11 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: dimgray;
+}
+
+#c1,
+#c2,
+#c3,
+#c4 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: dimgray;
+}
+
+#c5 {
+    font-size: 12px;
+    color: lightgrey;
+}
+
+#a1,
+#a2,
+#a3,
+#a4,
+#a5,
+#a6,
+#a7 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: dimgray;
+}
+
+#login_tips {
+    margin-top: 50px;
+    margin-left: 110px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#QRcode {
+    margin-top: 50px;
+    margin-left: 110px;
+}
+
+#words {
+    margin-top: 10px;
+    margin-left: 90px;
+    font-size: 14px;
+    color: dimgray;
+}
+
+.bule {
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+.gray {
+    text-decoration: none;
+    color: dimgrey;
+}
+
+#mailApp {
+    margin-top: 125px;
+}
+
+#foot2 {
+    border: 1px white solid;
+    margin-top: 50px;
+    margin-left: 490px;
+}
+
+#foot3 {
+    border: 1px white solid;
+    margin-top: 10px;
+    margin-left: 270px;
+}
+
+#foot31,
+#foot32,
+#foot33 {
+    float: left;
+}
+
+#foot32 {
+    margin-top: 3px;
+    /*为了使LOGO与文字对齐*/
+}

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>极客商城-专业的综合网上购物商城，为极客打造！
+    </title>
+    <!-- 网站说明 -->
+    <meta name="description" content="极客商城-专业的综合网上购物商城，为极客打造！" />
+    <!-- 关键字 -->
+    <meta name="keywords" content="网上购物,网上商城,手机,笔记本,电脑,MP3,相机,数码,配件,存储卡" />
+
+    <!-- 引入favicon图标 -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!-- 引入我们初始化样式文件 -->
+    <link rel="stylesheet" href="css/base.css">
+    <!-- 引入我们公共的样式文件 -->
+    <link rel="stylesheet" href="css/common.css">
+    <!-- 引入我们index.css文件  -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <!-- 快捷导航模块 start -->
+    <section class="shortcut">
+        <div class="w">
+            <div class="fl">
+                <ul>
+                    <li>极客商城欢迎您！&nbsp;</li>
+                    <li>
+                        <a href="userlogin.html">请登录</a> &nbsp; <a href="adminregister.html" class="style_red">免费注册</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fr">
+                <ul>
+                    <li>我的订单</li>
+                    <li></li>
+                    <li class="arrow-icon">我的极客</li>
+                    <li></li>
+                    <li>极客会员</li>
+                    <li></li>
+                    <li>企业采购</li>
+                    <li></li>
+                    <li class="arrow-icon">关注极客</li>
+                    <li></li>
+                    <li class="arrow-icon">客户服务</li>
+                    <li></li>
+                    <li class="arrow-icon">网站导航</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- 快捷导航模块 end -->
+    <!-- header头部模块制作 start -->
+    <header class="header w">
+        <!-- logo模块 -->
+        <div class="logo">
+            <h1>
+                <a href="index.html" title="极客商城">极客商城</a>
+            </h1>
+        </div>
+        <!-- search搜索模块 -->
+        <div class="search">
+            <input type="search" name="" id="" placeholder="语言开发">
+            <button>搜索</button>
+        </div>
+        <!-- hotwords模块制作 -->
+        <div class="hotwords">
+            <a href="#" class="style_red">优惠购首发</a>
+            <a href="#">亿元优惠</a>
+            <a href="#">9.9元团购</a>
+            <a href="#">美满99减30</a>
+            <a href="#">办公用品</a>
+            <a href="#">电脑</a>
+            <a href="#">通信</a>
+        </div>
+        <!-- 购物车模块 -->
+        <div class="shopcar">
+            <font color="red">我的购物车</font>
+            <i class="count">8</i>
+        </div>
+    </header>
+    <!-- header头部模块制作 end -->
+    <!-- nav模块制作 start -->
+    <nav class="nav">
+        <div class="w">
+            <div class="dropdown">
+                <div class="dt">全部商品分类</div>
+                <div class="dd">
+                    <ul>
+                        <li><a href="#">一体机、台式机</a> </li>
+                        <li><a href="#">手机</a>、 <a href="#">数码</a>、<a href="#">通信</a> </li>
+                        <li><a href="#">游戏本、办公本</a> </li>
+                        <li><a href="#">平板电脑</a> </li>
+                        <li><a href="#">显卡、处理器</a> </li>
+                        <li><a href="#">音箱、音响</a> </li>
+                        <li><a href="#">蓝牙耳机、接收器</a> </li>
+                        <li><a href="#">有线耳机、解码器</a> </li>
+                        <li><a href="#">游戏鼠标、键盘</a> </li>
+                        <li><a href="#">无线键盘、鼠标</a> </li>
+                        <li><a href="#">4k屏、电竞屏</a> </li>
+                        <li><a href="#">手机壳、挂件</a> </li>
+                        <li><a href="#">充电宝</a> </li>
+                        <li><a href="#">电源、充电头</a> </li>
+                        <li><a href="#">数据线、转接器</a> </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="navitems">
+                <ul>
+                    <li><a href="#">电脑商城</a></li>
+                    <li><a href="#">手机卖场</a></li>
+                    <li><a href="#">销售网络</a></li>
+                    <li><a href="#">服务网络</a></li>
+                    <li><a href="#">积分商城</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- nav模块制作 end -->
+    <!-- 首页专有的模块 main  start -->
+    <div class="w" id="app">
+        <div class="main">
+            <div class="focus">
+                <ul>
+                    <li>
+                        <a href="#" class="prev" @click="prev" v-show="index>0">&lt;</a>
+                        <a href="#" class="next" @click="next" v-show="index<imgList.length-1">&gt;</a>
+                        <ul class="promo-nav">
+                            <li :class="{selected:index===0}"></li>
+                            <li :class="{selected:index===1}"></li>
+                            <li :class="{selected:index===2}"></li>
+                            <li :class="{selected:index===3}"></li>
+                            <li :class="{selected:index===4}"></li>
+                        </ul>
+                        <img :src="imgList[index]" alt="">
+                    </li>
+                </ul>
+            </div>
+            <div class="newsflash">
+                <div class="news">
+                    <div class="news-hd">
+                        <h5>极客快报</h5>
+                        <a href="#" class="more">更多</a>
+                    </div>
+                    <div class="news-bd">
+                        <ul>
+                            <li><a href="#"><strong>[重磅]</strong> 黑科技来袭，你见过能充电的手机壳吗？</a></li>
+                            <li><a href="#"><strong>[重磅]</strong> 6核12线程，这款酷睿i5值得你入手！</a></li>
+                            <li><a href="#"><strong>[重磅]</strong> 王者荣耀双开同时玩，目前只有它能做到</a></li>
+                            <li><a href="#"><strong>[重磅]</strong> 小米6到手，可能是目前小米最完美的手机！</a></li>
+                            <li><a href="#"><strong>[重磅]</strong> 锐龙主板哪家强？华硕B450来帮忙</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lifeservice">
+                    <ul>
+                        <li>
+                            <i></i>
+                            <p>iphone</p>
+                        </li>
+                        <li>
+                            <i></i>
+                            <p>华为</p>
+                        </li>
+                        <li>
+                            <i></i>
+                            <p>vivo</p>
+                        </li>
+                        <li>
+                            <i></i>
+                            <p>小米</p>
+                        </li>
+                        <li>
+                            <i></i>
+                            <p>三星</p>
+                        </li>
+                        <li>
+                            <i></i>
+                            <p>一加</p>
+                        </li>
+                        <li>
+                            <i></i>
+                            <p>荣耀</p>
+                        </li>
+                        <li>
+                            <i></i>
+                            <p>oppo</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bargain">
+                    <img src="upload/bargain.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 首页专有的模块 main  end -->
+    <!-- 推荐模块 start-->
+    <div class="w recom">
+        <div class="recom_hd">
+            <img src="img/recom.png" alt="">
+        </div>
+        <div class="recom_bd">
+            <ul>
+                <li><img src="upload/1.png" alt=""></li>
+                <li><img src="upload/2.png" alt=""></li>
+                <li><img src="upload/3.png" alt=""></li>
+                <li><img src="upload/4.png" alt=""></li>
+                <li><img src="upload/5.png" alt=""></li>
+                <li><img src="upload/6.png" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 推荐模块 end-->
+    <!-- 楼层区域制作start -->
+    <div class="floor">
+        <!-- 1楼手机通讯楼层 -->
+        <div class="w jiadian">
+            <div class="box_hd">
+                <h3>手机通讯</h3>
+                <div class="tab_list">
+                    <ul>
+                        <li> <a href="#" class="style_red">热门</a>|</li>
+                        <li><a href="#">最新爆款</a>|</li>
+                        <li><a href="#">经典返场</a>|</li>
+                        <li><a href="#">无线耳机</a>|</li>
+                        <li><a href="#">有线耳机</a>|</li>
+                        <li><a href="#">数据线</a>|</li>
+                        <li><a href="#">充电头</a>|</li>
+                        <li><a href="#">手机壳</a>|</li>
+                        <li><a href="#">移动电源</a>|</li>
+                        <li><a href="#"> 手机膜</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box_bd">
+                <div class="tab_content">
+                    <div class="tab_list_item">
+                        <div class="col_210">
+                            <ul>
+                                <li><a href="#">苹果</a></li>
+                                <li><a href="#">三星</a></li>
+                                <li><a href="#">小米</a></li>
+                                <li><a href="#">OPPO</a></li>
+                                <li><a href="#">华为</a></li>
+                                <li><a href="#">魅族</a></li>
+                            </ul>
+                            <a href="#">
+                                <img src="upload/iphone12_1.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col_329">
+                            <a href="#">
+                                <img src="upload/iphone12_2.PNG.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col_221">
+                            <a href="#" class="bb"> <img src="upload/phone2.PNG" alt=""></a>
+                            <a href="#"> <img src="upload/phone3.PNG" alt=""></a>
+                        </div>
+                        <div class="col_221">
+                            <a href="#"> <img src="upload/phone4.PNG" alt=""></a>
+
+                        </div>
+                        <div class="col_219">
+                            <a href="#" class="bb"> <img src="upload/phone5.PNG" alt=""></a>
+                            <a href="#"> <img src="upload/phone6.PNG" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 2楼电脑楼层 -->
+        <div class="w shouji">
+            <div class="box_hd">
+                <h3>电脑装机</h3>
+                <div class="tab_list">
+                    <ul>
+                        <li> <a href="#" class="style_red">热门</a>|</li>
+                        <li><a href="#">整机购买</a>|</li>
+                        <li><a href="#">显卡</a>|</li>
+                        <li><a href="#">显示屏</a>|</li>
+                        <li><a href="#">处理器</a>|</li>
+                        <li><a href="#">机箱</a>|</li>
+                        <li><a href="#">电源</a>|</li>
+                        <li><a href="#">散热器</a>|</li>
+                        <li><a href="#">转接线</a>|</li>
+                        <li><a href="#">笔记本</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box_bd">
+                <div class="tab_content">
+                    <div class="tab_list_item">
+                        <div class="col_210">
+                            <ul>
+                                <li><a href="#">AMD</a></li>
+                                <li><a href="#">NVIDIA</a></li>
+                                <li><a href="#">苹果</a></li>
+                                <li><a href="#">玩家国度</a></li>
+                                <li><a href="#">惠普</a></li>
+                                <li><a href="#">戴尔</a></li>
+                            </ul>
+                            <a href="#">
+                                <img src="upload/compu1.PNG" alt="">
+                            </a>
+                        </div>
+                        <div class="col_329">
+                            <a href="#">
+                                <img src="upload/compu2.PNG" alt="">
+                            </a>
+                        </div>
+                        <div class="col_221">
+                            <a href="#" class="bb"> <img src="upload/compu3.PNG" alt=""></a>
+                            <a href="#"> <img src="upload/compu4.PNG" alt=""></a>
+                        </div>
+                        <div class="col_221">
+                            <a href="#"> <img src="upload/compu5.PNG" alt=""></a>
+
+                        </div>
+                        <div class="col_219">
+                            <a href="#" class="bb"> <img src="upload/compu6.PNG" alt=""></a>
+                            <a href="#"> <img src="upload/compu7.PNG" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 楼层区域制作end -->
+    <!-- 底部模块的制作 start -->
+    <footer class="footer">
+        <div class="w">
+            <div class="mod_service">
+                <ul>
+                    <li>
+                        <h5></h5>
+                        <div class="service_txt">
+                            <h4>正品保障</h4>
+                            <p>正品保障,提供发票</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h5></h5>
+                        <div class="service_txt">
+                            <h4>正品保障</h4>
+                            <p>正品保障,提供发票</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h5></h5>
+                        <div class="service_txt">
+                            <h4>正品保障</h4>
+                            <p>正品保障,提供发票</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h5></h5>
+                        <div class="service_txt">
+                            <h4>正品保障</h4>
+                            <p>正品保障,提供发票</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="mod_help">
+                <dl>
+                    <dt>服务指南</dt>
+                    <dd><a href="#">购物流程</a></dd>
+                    <dd><a href="#">会员介绍</a></dd>
+                    <dd><a href="#">生活旅行/团购</a></dd>
+                    <dd><a href="#">常见问题</a></dd>
+                    <dd><a href="#">热门商品</a></dd>
+                    <dd><a href="#">联系客服</a></dd>
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd><a href="#">银行转账</a></dd>
+                    <dd><a href="#">在线支付</a></dd>
+                    <dd><a href="#">电子发票</a></dd>
+                </dl>
+                <dl>
+                    <dt>配送方式</dt>
+                    <dd><a href="#">特快物流</a></dd>
+                    <dd><a href="#">同城速递</a></dd>
+                    <dd><a href="#">大批量配送</a></dd>
+                </dl>
+                <dl>
+                    <dt>售后服务</dt>
+                    <dd><a href="#">在线客服</a></dd>
+                    <dd><a href="#">退换政策</a></dd>
+                </dl>
+                <dl>
+                    <dt>服务指南</dt>
+                    <dd><a href="#">常见问题</a></dd>
+                    <dd><a href="#">联系我们</a></dd>
+                    <dd><a href="#">投诉与建议</a></dd>
+                </dl>
+            </div>
+            <div class="mod_copyright">
+                <div class="links">
+                    <a href="#">关于我们</a> | <a href="#">联系我们</a> | 联系客服 | 商家入驻 | 营销中心 | 手机 | 友情链接 | 销售联盟 | 社区 |
+                    极客公益 | English Site | Contact U
+                </div>
+                <div class="copyright">
+                    地址：北京林业大学 邮编：100083 电话：400-517-5177 传真：010-85175170 邮箱: newpro@126.com <br>
+                    京ICP备08001421号京公网安备110108007702
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- 底部模块的制作 end -->
+    <script src="plugins/vue/vue.js"></script>
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                imgList: [
+                    "upload/l1.png",
+                    "upload/l2.png",
+                    "upload/l3.png",
+                    "upload/l4.png",
+                    "upload/l5.png",
+
+                ],
+                index: 0
+            },
+            methods: {
+                // 上一张
+                prev() {
+                    this.index--;
+                },
+                // 下一张
+                next() {
+                    this.index++;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

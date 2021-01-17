@@ -8,6 +8,10 @@ import java.util.List;
 public interface ProductService {
     Product getProductById(int id);
 
+    Product addProduct(Product product);
+
+    Product setProduct(Product product);
+
     List<Product> getProductList(int pageNum, int pageSize);
 
     ProductListRes getProductListByType(String type, int pageNum, int pageSize);
