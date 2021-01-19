@@ -84,4 +84,11 @@ public class ProductServiceImpl implements ProductService {
         productDao.updateById(p);
         return p;
     }
+
+    @Override
+    public List<Product> getProductByKeyWord(String keyWord) {
+        QueryWrapper<Product> wrapper = new QueryWrapper<>();
+        wrapper.like("name", keyWord);
+        return productDao.selectList(wrapper);
+    }
 }

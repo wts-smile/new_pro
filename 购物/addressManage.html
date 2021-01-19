@@ -10,13 +10,89 @@
     <title>收货地址</title>
     <link rel="stylesheet" href="css/address.css">
     <link rel="stylesheet" href="css/sideBar_style.css">
+	<link rel="stylesheet" href="css/popbox.css">
+	<style>
+        /*背景层*/
+        #popLayer {
+            display: none;
+            background-color: #000;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            opacity:0.6;
+        }
+
+        /*弹出层*/
+        #popBox 
+		{
+            display: none;
+            background-color: #FFFFFF;
+            z-index: 11;
+            width: 600px;
+            height: 300px;
+            position:fixed;
+            top:0;
+            right:0;
+            left:0;
+            bottom:0;
+            margin:auto;
+        }
+        /*关闭按钮*/
+        #popBox .close{
+            text-align: right;
+            margin-right: 5px;
+            background-color: #F8F8F8;
+        }
+        #popBox .close a {
+            text-decoration: none;
+            color: #2D2C3B;
+        }
+    </style>
     <!--[if lt IE 9]>
     <script src="http://cdn.static.runoob.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
+	<div id="popLayer"></div>
+    <div id="popBox">
+        <div class="close">
+            <a href="javascript:void(0)" onclick="closeBox()">关闭</a>
+        </div>
+        <div class="content">
+		    <fieldset>
+        <form action="#">
+            <label for="addr-show">您选择的是：
+                <input type="text" value="" id="addr-show">
+            </label>
+            <br/>
+ 
+            <!--省份选择-->
+            <select id="prov" onchange="showCity(this)">
+                <option>=请选择省份=</option>
+ 
+            </select>
+ 
+            <!--城市选择-->
+            <select id="city" onchange="showCountry(this)">
+                <option>=请选择城市=</option>
+            </select>
+ 
+            <!--县区选择-->
+            <select id="country" onchange="selecCountry(this)">
+                <option>=请选择县区=</option>
+            </select>
+			<input type="text" id="dinput" placeholder="请输入详细地址" name="dadd"/>
+            <button type="button" class="btn met1" onClick="addadd()" id="button-show" >确定</button>
+			
+        </form>
+    </fieldset>
 
+		</div>
+    </div>
     <div class="sidebar">
         <!-- sidebartop -->
         <div class="sidebar__top">
@@ -33,23 +109,23 @@
         <div class="sidebar__nav">
             <h5>导航菜单</h5>
             <ul class="sidebar__menu">
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toHome()">
                     <span>商场主页</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toOrder()">
                     <span>我的订单</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toCart()">
                     <span>我的购物车</span>
                 </li>
-                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                <li class="sidebar__menu--item" style="background-color: #1376ff;" onclick="toAddr()">
                     <span>收货地址管理</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toDetail()" style="display:none;" >
                     <span>个人资料</span>
                 </li>
                 <!-- <li class="sidebar__menu--item"> -->
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toPass()">
                     <span>修改密码</span>
                 </li>
             </ul>
@@ -59,9 +135,9 @@
             <div class="avatar ">
                 <img src="img/sideBar1.jpg " alt=" ">
             </div>
-            <div class="content ">
+            <div class="content " id="showusr">
                 <strong>Hello</strong>
-                <p>小七</p>
+                <p>{{username}}</p>
             </div>
             <div class="arrow ">
                 <svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 492.004 492.004 ">
@@ -84,16 +160,7 @@
                             <span class="tn">收货人</span>
                         </th>
                         <th rowspan="1" class="thh">
-                            <span class="tn">所在地区</span>
-                        </th>
-                        <th rowspan="1" class="thh">
                             <span class="tn">详细地址</span>
-                        </th>
-                        <th rowspan="1" class="thh">
-                            <span class="tn">邮编</span>
-                        </th>
-                        <th rowspan="1" class="thh">
-                            <span class="tn">电话/手机</span>
                         </th>
                         <th rowspan="1" class="thh">
                             <span class="tn">操作</span>
@@ -112,30 +179,15 @@
                         </td>
                         <td class="tdd">
                             <span class="ti">
-                                <em class="tt">{{v.address}}</em>
-                            </span>
-                        </td>
-                        <td class="tdd">
-                            <span class="ti">
                                 <em class="tt">{{v.detailAddress}}</em>
                             </span>
                         </td>
                         <td class="tdd">
                             <span class="ti">
-                                <em class="tt">{{v.zipCode}}</em>
-                            </span>
-                        </td>
-                        <td class="tdd">
-                            <span class="ti">
-                                <em class="tt">{{v.phone}}</em>
-                            </span>
-                        </td>
-                        <td class="tdd">
-                            <span class="ti">
                                 <div class="handle">
-                                    <a href="javascript:;" class="a-chg">修改</a>
+                                    <em class="i-del" @click="modadd(i)">修改</em>
                                     <i class="line">|</i>
-                                    <em class="i-del">删除</em>
+                                    <em class="i-del" @click="deladd(i)">删除</em>
                                 </div>
                             </span>
                         </td>
@@ -146,17 +198,191 @@
                             </span>
                         </td>
                     </tr>
-
+					<tr class="item">
+						<td class="tdd">
+							<span class="ti">
+								<em class="set-def" onclick="addbutton()">添加</em>
+							</span>
+						</td>
+					</tr>
                 </tbody>
             </table>
         </div>
     </div>
-
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="plugins/vue/vue.js"></script>
     <script src="plugins/vue/axios.js"></script>
-
+	<script src="js/city.js"></script>
+	<script src="js/method.js"></script>
+	<script src="js/usernav.js"></script>
     <script>
+		function popBox(op) {
+			sessionStorage.setItem("popboxstatus",op);
+            var popBox = document.getElementById("popBox");
+            var popLayer = document.getElementById("popLayer");
+            popBox.style.display = "block";
+            popLayer.style.display = "block";
+        };
+
+        /*点击关闭按钮*/
+        function closeBox() {
+            var popBox = document.getElementById("popBox");
+            var popLayer = document.getElementById("popLayer");
+            popBox.style.display = "none";
+            popLayer.style.display = "none";
+        }
         //地址管理
+		function getaddlist()
+		{
+			if(!sessionStorage.getItem("cuser"))
+			{
+				alert("login error");
+				return;
+			}
+			var tmpuser = JSON.parse(sessionStorage.getItem("cuser")).name;
+			//alert(uid);
+			var $=jQuery.noConflict();
+			$.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/addr/list" ,//url
+                data: {"username":tmpuser},
+                success: function (result) {
+					console.log(result);
+					while(vueAddress.addressList.pop());
+					for(var u of result)
+					{
+						var json = {};
+						json["aid"]=u.id;
+						json["name"]=u.name;
+						json["detailAddress"]=u.addr;
+						json["isDefault"]=u.isdefault;
+						vueAddress.addressList.push(json);
+					}
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		}
+		function defaultadd(aid)
+		{
+			if(!sessionStorage.getItem("cuser"))
+			{
+				alert("login error");
+				return;
+			}
+			var tmpuser = JSON.parse(sessionStorage.getItem("cuser")).name;
+			//alert(uid);
+			var $=jQuery.noConflict();
+			$.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/addr/setdefault" ,//url
+                data: {"username":tmpuser,"aid":aid},
+                success: function (result) {
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		};
+		function addbutton()
+		{
+			sessionStorage.removeItem("changingaid");
+			popBox();
+		}
+		function addadd()
+		{
+			var tmpuser = JSON.parse(sessionStorage.getItem("cuser")).name;
+			var addd = showAddr();
+			var aid = sessionStorage.getItem("changingaid");
+			console.log(aid);
+			if(aid)
+			{
+				alert(aid);
+				sessionStorage.removeItem("changingaid");
+				var $=jQuery.noConflict();
+				var finaladd = addd + $("#dinput").val();
+				closeBox();
+				$.ajax({
+				//几个参数需要注意一下
+					async: false, //等待请求结束后刷新列表……
+					type: "POST",//方法类型
+					dataType: "json",//预期服务器返回的数据类型
+					url: "http://localhost:8080/addr/upd" ,//url
+					data: {"aid":aid,"addr":finaladd},
+					success: function (result) {
+						//Vue.delete();
+					},
+					error : function() {
+						alert("异常！");
+					}
+				});
+				getaddlist();
+				return;
+			}
+			else{
+				var $=jQuery.noConflict();
+				var finaladd = addd + $("#dinput").val();
+				closeBox();
+				$.ajax({
+				//几个参数需要注意一下
+					async: false, //等待请求结束后刷新列表……
+					type: "POST",//方法类型
+					dataType: "json",//预期服务器返回的数据类型
+					url: "http://localhost:8080/addr/add" ,//url
+					data: {"username":tmpuser,"addr":finaladd},
+					success: function (result) {
+						//Vue.delete();
+					},
+					error : function() {
+						alert("异常！");
+					}
+				});
+				getaddlist();
+			//alert(finaladd);
+			}
+			
+		};
+		function deladd(aid)
+		{
+			if(!sessionStorage.getItem("cuser"))
+			{
+				alert("login error");
+				return;
+			}
+			var tmpuser = JSON.parse(sessionStorage.getItem("cuser")).name;
+			//alert(uid);
+			var $=jQuery.noConflict();
+			$.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/addr/del" ,//url
+                data: {"aid":aid},
+                success: function (result) {
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		};
+		var $=jQuery.noConflict();
+		$(document).ready(function(){
+			vueNavBottom.username= JSON.parse(sessionStorage.getItem("cuser")).name;
+		});
+		const vueNavBottom = new Vue({
+            el: '#showusr',
+            data:{
+                username:"anounymous"
+            }
+		});
         const vueAddress = new Vue({
             el: '#vue-address',
             data() {
@@ -166,11 +392,13 @@
             },
             created() {
                 this.getAddressJson();
+				//this.topDefault();
             },
             methods: {
                 //获取地址列表数据
                 getAddressJson() {
-                    let url = 'json/addressTest.json';
+				getaddlist();
+                    /*let url = 'json/addressTest.json';
                     axios.get(url)
                         .then(response => {
                             this.addressList = response.data.list;
@@ -178,18 +406,55 @@
                         })
                         .catch(error => {
                             console.log(error)
-                        })
+                        })*/
+					
                 },
 
                 //设置默认地址
                 setDefault(i) {
                     const addressList = this.addressList;
+					var aid = addressList[i].aid;
+					defaultadd(aid);
                     addressList.forEach((item, index) => {
                         item.isDefault = index == i;
+						
+						//alert(i);
                     });
                     addressList.splice(0, 0, ...addressList.splice(i, 1));
-                }
-
+                },
+				
+				topDefault()
+				{
+					const addressList = this.addressList;
+					var t=0;
+					addressList.forEach((item, index) => {
+						console.log(item);
+						alert(item);
+                        if(item.isDefault)
+							t=index;
+						
+						//alert(i);
+                    });
+					alert(t);
+					addressList.splice(0, 0, ...addressList.splice(t, 1));
+				},
+				deladd(i) 
+				{
+					const addressList = this.addressList;
+					if(window.confirm('你确定要删除？'))
+					{
+						var aid = addressList[i].aid;
+						deladd(aid);
+						addressList.splice(i,1);
+					}
+                },
+				modadd(i)
+				{
+					const addressList = this.addressList;
+					var aid = addressList[i].aid;
+					sessionStorage.setItem("changingaid",aid);
+					popBox();
+				}
             }
         });
     </script>

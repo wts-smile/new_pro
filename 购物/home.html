@@ -26,11 +26,14 @@
     <!-- 快捷导航模块 start -->
     <section class="shortcut">
         <div class="w">
-            <div class="fl">
+            <div class="fl" id="loginnav">
                 <ul>
                     <li>极客商城欢迎您！&nbsp;</li>
-                    <li>
+                    <li v-if="!seen.visible">
                         <a href="userlogin.html">请登录</a> &nbsp; <a href="adminregister.html" class="style_red">免费注册</a>
+                    </li>
+					<li v-if="seen.visible">
+                        <a href="addressManage.html">{{user.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -78,9 +81,10 @@
             <a href="#">通信</a>
         </div>
         <!-- 购物车模块 -->
-        <div class="shopcar">
-            <font color="red">我的购物车</font>
-            <i class="count">8</i>
+        <div class="shopcar" id="shopcart">
+			<p v-if="seen.visible">我的购物车</p>
+			<p v-if="!seen.visible">未登录</p>
+            <i class="count" v-if="seen.visible">{{cartnum.num}}</i>
         </div>
     </header>
     <!-- header头部模块制作 end -->
@@ -91,8 +95,7 @@
                 <div class="dt">全部商品分类</div>
                 <div id="typenav" class="dd">
                     <ul>
-                        <li v-for="type in types">{{type}}</li>
-
+                        <li style="font-size:14px; color:#FFF" v-for="type in types" onclick="typeshow(this)">{{type}}</li>
                     </ul>
                 </div>
             </div>
@@ -402,6 +405,7 @@
     </footer>
     <!-- 底部模块的制作 end -->
     <script src="plugins/vue/vue.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
     <script>
         const app = new Vue({
@@ -431,9 +435,100 @@
 		const app2 = new Vue({
             el: "#typenav",
             data: {
-                types:["11","22","33"]
+                types:[]
             }
         });
+		const app3 = new Vue({
+            el: "#shopcart",
+            data: {
+                seen:{
+					visible : true
+				},
+				cartnum: {
+					num : 0
+				}
+            }
+        });
+		const app4 = new Vue({
+            el: "#loginnav",
+            data: {
+                seen:{
+					visible : true
+				},
+				user: {
+				}
+            }
+        });
+		function loadtype()
+		{
+			$.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/product/types" ,//url
+                data: {},
+                success: function (result) {
+					console.log(result);
+					for(var i of result)
+					{
+						console.log(i);
+						app2.types.push(i);
+					}
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		};
+		function getcartnum(username)
+		{
+			var str = '{"username":"' + username + '"}';
+			console.log(str);
+			console.log(typeof str);
+			var tjson = JSON.parse(str);
+			$.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/cart/list" ,//url
+                data: tjson,
+                success: function (result) {
+					console.log(username);
+					console.log(result);
+					//app3.$set(app3.cartnum,num,result.length);
+					app3.cartnum.num=result.length;
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		};
+		function typeshow(e)
+		{
+			//alert($(e).text());
+			sessionStorage.setItem("ctype",$(e).text());
+			window.location="分类查找.html";
+			
+		}
+		$(document).ready(function(){
+			loadtype();
+			if(sessionStorage.getItem("cuser"))
+			{
+				var tmpuser = JSON.parse(sessionStorage.getItem("cuser")).name;
+				//alert(tmpuser);
+				getcartnum(tmpuser);
+				app4.$set(app4.user,"name",tmpuser);
+			}
+			else
+			{
+				app3.seen.visible=false;
+				app4.seen.visible=false;
+				//alert("login needed");
+			}
+			
+		});
     </script>
 </body>
 

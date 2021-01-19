@@ -44,23 +44,23 @@
         <div class="sidebar__nav">
             <h5>导航菜单</h5>
             <ul class="sidebar__menu">
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toHome()">
                     <span>商场主页</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toOrder()">
                     <span>我的订单</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toCart()">
                     <span>我的购物车</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toAddr()">
                     <span>收货地址管理</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toDetail()" style="display:none;">
                     <span>个人资料</span>
                 </li>
                 <!-- <li class="sidebar__menu--item"> -->
-                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                <li class="sidebar__menu--item" style="background-color: #1376ff;" onclick="toPass()">
                     <span>修改密码</span>
                 </li>
             </ul>
@@ -70,9 +70,9 @@
             <div class="avatar ">
                 <img src="img/sideBar1.jpg " alt=" ">
             </div>
-            <div class="content ">
+            <div class="content " id="showusr">
                 <strong>Hello</strong>
-                <p>小七</p>
+                <p>{{username}}</p>
             </div>
             <div class="arrow ">
                 <svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 492.004 492.004 ">
@@ -108,20 +108,69 @@
         </div>
 
         <label>
-            <input type="text " placeholder="输入原密码 " />
+            <input id="opass" type="text " placeholder="输入原密码 " />
         </label>
         <label>
-            <input type="password " placeholder="输入新密码 " />
+            <input id="npass" type="password " placeholder="输入新密码 " />
         </label>
         <label>
-            <input type="password " placeholder="请再次输入新密码 " />
+            <input id="checkpass" type="password " placeholder="请再次输入新密码 " />
         </label>
-        <button class="red " type="button "><i class="icon ion-md-lock "></i> 确认</button>
+        <button class="red " type="button " onclick="modpass()"><i class="icon ion-md-lock "></i> 确认</button>
     </form>
 
 
     <script src="js/sideBar_script.js "></script>
+	<script src="js/usernav.js "></script>
 
 </body>
-
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="plugins/vue/vue.js"></script>
+<script>
+function modpass()
+{
+	/*console.log($("#opass").val());
+	console.log($("#npass").val());
+	console.log($("#opass").val() === $("#npass").val());*/
+	if($("#npass").val() === $("#checkpass").val())
+	{
+		var tmpuser = JSON.parse(sessionStorage.getItem("cuser")).name;
+		var json ={};
+		json["username"] = tmpuser;
+		json["password"] = $("#opass").val();
+		json["newpass"] = $("#npass").val();
+		$.ajax({
+            //几个参数需要注意一下
+				async:false,
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/user/changepass" ,//url
+                data: json,
+                success: function (result) {
+					//app3.$set(app3.cartnum,num,result.length);
+					alert("成功");
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		//alert("异常！");
+	}
+	else
+	{
+		alert("确认密码不一致");
+	}
+	//alert($("#opass").val());
+};
+const vueNavBottom = new Vue({
+	el: '#showusr',
+	data:{
+		username:"anounymous"
+	}
+});
+$(document).ready(function(){
+	vueNavBottom.username= JSON.parse(sessionStorage.getItem("cuser")).name;
+});
+</script>
 </html>

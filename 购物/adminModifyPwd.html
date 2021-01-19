@@ -49,16 +49,16 @@
         <div class="sidebar__nav">
             <h5>导航菜单</h5>
             <ul class="sidebar__menu">
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onlick="toorder()">
                     <span>订单管理</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onlick="togood()">
                     <span>商品管理</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onlick="addgood()">
                     <span>新增商品</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item"">
                     <span>用户管理</span>
                 </li>
                 <li class="sidebar__menu--item">
@@ -107,26 +107,66 @@
         </div>
     </div> -->
 
-    <form>
+    <form id="app">
         <div class="segment ">
             <h1>修改密码</h1>
         </div>
 
         <label>
-            <input type="text " placeholder="输入原密码 " />
+            <input type="text " name="password" placeholder="输入原密码 " />
         </label>
         <label>
-            <input type="password " placeholder="输入新密码 " />
+            <input type="password " name="checkpass" placeholder="输入新密码 " />
         </label>
-        <label>
-            <input type="password " placeholder="请再次输入新密码 " />
-        </label>
-        <button class="red " type="button "><i class="icon ion-md-lock "></i> 确认</button>
+        <button class="red " type="button " onclick="cpass()"><i class="icon ion-md-lock " name></i> 确认</button>
     </form>
 
 
     <script src="js/sideBar_script.js "></script>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
 </body>
-
+<script language="javascript">
+	function toorder()
+	{
+		window.location = "查找订单1.html"
+	}
+	function togood()
+	{
+		window.location = "管理员搜索商品.html"
+	}
+	function addgood()
+	{
+		window.location = "新增商品.html"
+	}
+	function cpass() {
+			var json = $('#app').serialize();
+			json['username']=sessionStorage.getItem("cuser").name;
+            $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/user/changepass" ,//url
+                data: $('#app').serialize(),
+                success: function (result) {
+					if(result.errno==0)
+					{
+                    //console.log(result.user);//打印服务端返回的数据(调试用)
+					window.location = "adminModifyPwd.html";
+					//alert(result.resultCode);
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    }}
+					else
+					{
+						alert("修改失败");
+					}
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+</script>
 </html>

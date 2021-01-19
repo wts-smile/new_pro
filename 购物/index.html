@@ -13,7 +13,7 @@
         <h2 align=center>选择您的身份登陆</h2>
         <input class="lbutton" type="button" onclick="adminlogin()" value="管理员"><br>
         <input class="lbutton" type="button" onclick="login()" value="用户"><br>
-        <input class="lbutton" type="button" value="游客"><br>
+        <input class="lbutton" type="button" onclick="home()" value="游客"><br>
 
     </form>
 
@@ -28,6 +28,10 @@
 	function login()
 	{
 		window.location = "userlogin.html"
+	}
+	function home()
+	{
+		window.location = "home.html"
 	}
 </script>
 

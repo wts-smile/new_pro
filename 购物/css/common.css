@@ -129,19 +129,6 @@
     background-color: #FFFFFF;
 }
 
-.shopcar::before {
-    content: '\e93a';
-    font-family: 'icomoon';
-    margin-right: 5px;
-    color: #b1191a;
-}
-
-.shopcar::after {
-    content: '\e920';
-    font-family: 'icomoon';
-    margin-left: 10px;
-}
-
 .count {
     position: absolute;
     top: -5px;

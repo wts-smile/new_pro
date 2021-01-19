@@ -39,6 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
+    @CrossOrigin
     public RegisterRes userRegister(RegisterReq req) {
         String name = req.getUsername();
         String pass = req.getPassword();
@@ -61,6 +62,7 @@ public class UserController {
     }
 
     @PostMapping("/user/changepass")
+    @CrossOrigin
     public UserWithAddrRes userChangepass(@RequestParam("username") String username,@RequestParam("password") String password,@RequestParam("newpass") String newpass) {
         User u = userService.changePass(username, password, newpass);
         List<Address> list = addrService.listAllAddrByUser(username);

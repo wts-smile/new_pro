@@ -95,23 +95,23 @@
         <div class="sidebar__nav">
             <h5>导航菜单</h5>
             <ul class="sidebar__menu">
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toHome()">
                     <span>商场主页</span>
                 </li>
-                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                <li class="sidebar__menu--item" style="background-color: #1376ff;" onclick="toOrder()">
                     <span>我的订单</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item"  onclick="toCart()">
                     <span>我的购物车</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toAddr()">
                     <span>收货地址管理</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toDetail()" style="display:none;" >
                     <span>个人资料</span>
                 </li>
                 <!-- <li class="sidebar__menu--item"> -->
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toPass()">
                     <span>修改密码</span>
                 </li>
             </ul>
@@ -121,9 +121,9 @@
             <div class="avatar ">
                 <img src="img/sideBar1.jpg " alt=" ">
             </div>
-            <div class="content ">
+            <div class="content " id="showusr">
                 <strong>Hello</strong>
-                <p>小七</p>
+                <p>{{username}}</p>
             </div>
             <div class="arrow ">
                 <svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 492.004 492.004 ">
@@ -140,23 +140,16 @@
         <div class="box">
             <div class="order-class">
                 <a href="#" class="bar on">
-                    <span>所有订单</span>
+                    <span onclick="loadorder(0)">所有订单</span>
                 </a>
                 <a href="#" class="bar">
-                    <span>待付款</span>
-                    <span class="pinkColor">1</span>
+                    <span onclick="loadorder(1)">待付款</span>
                 </a>
                 <a href="#" class="bar">
-                    <span>待发货</span>
-                    <span class="pinkColor">0</span>
+                    <span onclick="loadorder(2)">已支付</span>
                 </a>
                 <a href="#" class="bar">
-                    <span>待收货</span>
-                    <span class="pinkColor">1</span>
-                </a>
-                <a href="#" class="bar">
-                    <span>待评价</span>
-                    <span class="pinkColor">0</span>
+                    <span onclick="loadorder(3)">已取消</span>
                 </a>
             </div>
             <!--指针-->
@@ -173,12 +166,9 @@
                 <div class="container">
                     <!-- 搜索条件 -->
                     <div class="search-res-mask"></div>
-                    <div class="tar mt10">
-                        <button class="layui-btn layui-btn-normal layui-btn-small">导出</button>
-                    </div>
                     <!-- 表格列表 -->
                     <div class="table-list">
-                        <table class="layui-table layui-list-table" lay-skin="line">
+                        <table id="olist" class="layui-table layui-list-table" lay-skin="line">
                             <thead>
                                 <tr>
                                     <th>订单编号</th>
@@ -186,44 +176,20 @@
                                     <th>商品数量</th>
                                     <th>成交金额</th>
                                     <th>收货人</th>
-                                    <th>手机号码</th>
-                                    <th>支付方式</th>
                                     <th>交易时间</th>
                                     <th>订单状态</th>
-                                    <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="layui-table-first"><i class="layui-table-hd">订单编号</i><span class="layui-table-bd">SZ2018974</span></td>
-                                    <td><i class="layui-table-hd">商品名称</i><span class="layui-table-bd">Apple iPhoneX 128G 红色特别版</span></td>
-                                    <td><i class="layui-table-hd">商品数量</i><span class="layui-table-bd">200</span></td>
-                                    <td><i class="layui-table-hd">成交金额</i><span class="layui-table-bd price">1200.00</span></td>
-                                    <td><i class="layui-table-hd">收货人</i><span class="layui-table-bd">小曹</span></td>
-                                    <td><i class="layui-table-hd">手机号码</i><span class="layui-table-bd">13728936778</span></td>
-                                    <td><i class="layui-table-hd">支付方式</i><span class="layui-table-bd">微信支付</span></td>
-                                    <td><i class="layui-table-hd">交易时间</i><span class="layui-table-bd">2017-09-27 12:00:00</span></td>
-                                    <td><i class="layui-table-hd">订单状态</i><span class="layui-table-bd">待发货</span></td>
-                                    <td class="layui-table-btn">
-                                        <button class="layui-btn layui-btn-normal layui-btn-small" onclick="window.location.href='发货操作.html'">立即付款</button>
-                                        <button class="layui-btn layui-btn-normal layui-btn-small" onclick="window.location.href='待发货详情.html'">取消订单</button>
-                                    </td>
+                                <tr v-for="item in list">
+                                    <td class="layui-table-first"><span class="layui-table-bd">{{item.id}}</span></td>
+                                    <td><span class="layui-table-bd">{{item.name}}</span></td>
+                                    <td><span class="layui-table-bd">{{item.cnt}}</span></td>
+                                    <td><span class="layui-table-bd price">{{item.price}}</span></td>
+                                    <td><span class="layui-table-bd">{{item.uname}}</span></td>
+                                    <td><span class="layui-table-bd">{{item.time}}</span></td>
+                                    <td><span class="layui-table-bd">{{item.status}}</span></td>
                                 </tr>
-                                <tr>
-                                    <td class="layui-table-first"><i class="layui-table-hd">订单编号</i><span class="layui-table-bd">SZ2018974</span></td>
-                                    <td><i class="layui-table-hd">商品名称</i><span class="layui-table-bd">Apple iPhoneX 128G 红色特别版</span></td>
-                                    <td><i class="layui-table-hd">商品数量</i><span class="layui-table-bd">200</span></td>
-                                    <td><i class="layui-table-hd">成交金额</i><span class="layui-table-bd price">1200.00</span></td>
-                                    <td><i class="layui-table-hd">收货人</i><span class="layui-table-bd">小曹</span></td>
-                                    <td><i class="layui-table-hd">手机号码</i><span class="layui-table-bd">13728936778</span></td>
-                                    <td><i class="layui-table-hd">支付方式</i><span class="layui-table-bd">微信支付</span></td>
-                                    <td><i class="layui-table-hd">交易时间</i><span class="layui-table-bd">2017-09-27 12:00:00</span></td>
-                                    <td><i class="layui-table-hd">订单状态</i><span class="layui-table-bd">已发货</span></td>
-                                    <td class="layui-table-btn">
-                                        <button class="layui-btn layui-btn-normal layui-btn-small" onclick="window.location.href='待发货详情.html'">确认收货</button>
-                                    </td>
-                                </tr>
-
                             </tbody>
                         </table>
                     </div>
@@ -232,13 +198,9 @@
                     <div id="table-pages" class="tac"></div>
 
                 </div>
-            </div>
-        </div>
-    </div>
 
 
-
-
+	<script src="js/usernav.js"></script>
     <script language="javascript" type="text/javascript">
         pointer('order-class', 121);
 
@@ -295,53 +257,97 @@
     </script>
     <script type="text/javascript" src="js/vue.min.js"></script>
     <script type="text/javascript" src="layui/layui.js"></script>
-    <script type="text/javascript" src="js/fastclick.js"></script>
-    <script type="text/javascript" src="js/admin.js"></script>
     <script>
-        layui.use(['jquery', 'form', 'laydate', 'layer', 'laypage', 'element'], function() {
-            var $ = layui.jquery,
-                laydate = layui.laydate,
-                layer = layui.layer,
-                laypage = layui.laypage,
-                element = layui.element;
-            $(function() {
-                FastClick.attach(document.body);
-            });
-
-            // 分页
-            laypage.render({
-                elem: 'table-pages',
-                count: 5,
-                layout: ['prev', 'page', 'next', 'count', 'skip'],
-                jump: function(obj, first) {
-                    //obj包含了当前分页的所有参数，比如：
-                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-                    console.log(obj.limit); //得到每页显示的条数
-
-                    //首次不执行
-                    if (!first) {
-                        //do something
-                    }
-                }
-            });
-
-
-            // 开始时间及截止时间
-            laydate.render({
-                elem: '#time',
-                range: true,
-                type: 'date' // 'month'  'date' 'datetime'
-                    ,
-                done: function(value, date, endDate) {
-                    console.log(value); //得到日期生成的值，如：2017-08-18
-                    console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-                    console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
-                },
-                trigger: 'click'
-            });
-
-
+		const vueNavBottom = new Vue({
+            el: '#showusr',
+            data:{
+                username:"anounymous"
+            }
+		});
+		var app = new Vue({
+            el: "#olist",
+            data: {
+                list:[]/* [{
+                    id: 1,
+                    name: "草莓",
+                    price: 10,
+                    num: 1,
+                    active: true
+                }, {
+                    id: 2,
+                    name: "巧克力",
+                    price: 30,
+                    num: 2,
+                    active: false
+                }, {
+                    id: 3,
+                    name: "奶油蛋糕",
+                    price: 50,
+                    num: 3,
+                    active: true
+                }],*/
+            }
         });
+		$(document).ready(function(){
+			//alert("good");
+			if(sessionStorage.getItem("cuser"))
+			{
+				//var tmpuser = JSON.parse(sessionStorage.getItem("cuser")).name;
+				vueNavBottom.username= JSON.parse(sessionStorage.getItem("cuser")).name;
+				loadorder(0);
+				//alert(tmpuser);
+			}
+		});
+		function loadorder(st)
+		{
+			while(app.list.pop());
+			if(sessionStorage.getItem("cuser"))
+			{
+				var tmpuser = JSON.parse(sessionStorage.getItem("cuser")).name;
+				$.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/order/list" ,//url
+                data: {"username":tmpuser},
+                success: function (result) {
+					console.log(result);
+					for(var i of result)
+					{
+						if(st === 0 || i.status === st)
+						{
+							var json = {};
+							json["id"]=i.orderId;
+							json["name"]=i.product.name;
+							json["cnt"]=i.num;
+							json["price"]=i.num * i.product.price;
+							json["uname"]=i.username;
+							json["time"]=i.startTime;
+							if(i.status == 1)
+							{
+								json["status"]="未支付";
+							}
+							if(i.status == 2)
+							{
+								json["status"]="已支付";
+							}
+							if(i.status == 3)
+							{
+								json["status"]="已取消";
+							}
+							console.log(json);
+							app.list.push(json);
+						}
+					}
+					//Vue.delete();
+					},
+					error : function() {
+                    alert("异常！");
+					}
+				});
+				//alert(tmpuser);
+			}
+		}
     </script>
 </body>
 

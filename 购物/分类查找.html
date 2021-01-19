@@ -26,11 +26,14 @@
     <!-- 快捷导航模块 start -->
     <section class="shortcut">
         <div class="w">
-            <div class="fl">
+            <div class="fl" id="loginnav">
                 <ul>
                     <li>极客商城欢迎您！&nbsp;</li>
-                    <li>
+                    <li v-if="!seen.visible">
                         <a href="userlogin.html">请登录</a> &nbsp; <a href="adminregister.html" class="style_red">免费注册</a>
+                    </li>
+					<li v-if="seen.visible">
+                        <a href="addressManage.html">{{user.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -64,8 +67,8 @@
         </div>
         <!-- search搜索模块 -->
         <div class="search">
-            <input type="search" name="" id="" placeholder="语言开发">
-            <button>搜索</button>
+            <input type="search" name="" id="searchtext" placeholder="语言开发">
+            <button onclick="searchp()">搜索</button>
         </div>
         <!-- hotwords模块制作 -->
         <div class="hotwords">
@@ -78,9 +81,10 @@
             <a href="#">通信</a>
         </div>
         <!-- 购物车模块 -->
-        <div class="shopcar">
-            <font color="red">我的购物车</font>
-            <i class="count">8</i>
+        <div class="shopcar" id="shopcart">
+			<p v-if="seen.visible">我的购物车</p>
+			<p v-if="!seen.visible">未登录</p>
+            <i class="count" v-if="seen.visible">{{cartnum.num}}</i>
         </div>
     </header>
     <!-- header头部模块制作 end -->
@@ -89,24 +93,9 @@
         <div class="w">
             <div class="dropdown">
                 <div class="dt">全部商品分类</div>
-                <div class="dd">
+                <div id="typenav" class="dd">
                     <ul>
-                        <li><a href="#">一体机、台式机</a> </li>
-                        <li><a href="#">手机</a>、 <a href="#">数码</a>、<a href="#">通信</a> </li>
-                        <li><a href="#">游戏本、办公本</a> </li>
-                        <li><a href="#">平板电脑</a> </li>
-                        <li><a href="#">显卡、处理器</a> </li>
-                        <li><a href="#">音箱、音响</a> </li>
-                        <li><a href="#">蓝牙耳机、接收器</a> </li>
-                        <li><a href="#">有线耳机、解码器</a> </li>
-                        <li><a href="#">游戏鼠标、键盘</a> </li>
-                        <li><a href="#">无线键盘、鼠标</a> </li>
-                        <li><a href="#">4k屏、电竞屏</a> </li>
-                        <li><a href="#">手机壳、挂件</a> </li>
-                        <li><a href="#">充电宝</a> </li>
-                        <li><a href="#">电源、充电头</a> </li>
-                        <li><a href="#">数据线、转接器</a> </li>
-
+                        <li style="font-size:14px; color:#FFF" v-for="type in types" onclick="typeshow(this)">{{type}}</li>
                     </ul>
                 </div>
             </div>
@@ -203,11 +192,11 @@
     <!-- 推荐模块 start-->
     <div class="box-bd" id="app2">
         <ul class="clearfix">
-            <li v-for="(item,index) in goodList">
-                <img :src="item.url" alt="">
+            <li v-for="(item,index) in goodList" v-bind:onclick="'showgood(' + index +')'">
+                <img :src="'upload/' + item.url" alt="">
                 <h4>{{item.name}}</h4>
                 <p><span>价格: </span> {{item.price}}元</p>
-                <p><span>库存: </span> 剩余{{item.num}}件</p>
+                <p><span>销量: </span> {{item.num}}件</p>
             </li>
 
         </ul>
@@ -296,7 +285,7 @@
     </footer>
     <!-- 底部模块的制作 end -->
     <script src="plugins/vue/vue.js"></script>
-
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         const app = new Vue({
             el: "#app",
@@ -322,11 +311,11 @@
                 }
             }
         });
-        const app2 = new Vue({
+        const apptype = new Vue({
             el: "#app2",
             data: {
                 goodList: [
-                    {
+                    /*{
                         id: 1,
                         name: "草莓",
                         price: 10,
@@ -344,7 +333,7 @@
                         price: 50,
                         num: 3,
                         url: "upload/3.PNG"
-                    }
+                    }*/
                 ],
                 index: 0
             },
@@ -352,6 +341,175 @@
 
             }
         });
+		const app2 = new Vue({
+            el: "#typenav",
+            data: {
+                types:[]
+            }
+        });
+		const app3 = new Vue({
+            el: "#shopcart",
+            data: {
+                seen:{
+					visible : true
+				},
+				cartnum: {
+					num : 0
+				}
+            }
+        });
+		const app4 = new Vue({
+            el: "#loginnav",
+            data: {
+                seen:{
+					visible : true
+				},
+				user: {
+				}
+            }
+        });
+		function loadtype()
+		{
+			$.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/product/types" ,//url
+                data: {},
+                success: function (result) {
+					console.log(result);
+					for(var i of result)
+					{
+						console.log(i);
+						app2.types.push(i);
+					}
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		};
+		function searchp()
+		{
+			while(apptype.goodList.pop());
+			$.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/product/list/keyword" ,//url
+                data: {"keyword":$("#searchtext").val()},
+                success: function (result) {
+					//app3.$set(app3.cartnum,num,result.length);
+					//console.log(result);
+					console.log(result);
+					for(var ee of result)
+					{
+						var json = {};
+						json["id"]=ee.id;
+						json["name"]=ee.name;
+						json["num"]=ee.salecnt;
+						json["price"]=ee.price;
+						json["url"]=ee.pic;
+						apptype.goodList.push(json);
+					}
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		}
+		function showgood(index)
+		{
+			//alert(index);
+			var cgid = apptype.goodList[index].id;
+			//alert(JSON.stringify(cgid));
+			sessionStorage.setItem("cgoodid",cgid);
+			window.location = "goodInfo.html";
+		};
+		function getcartnum(username)
+		{
+			var str = '{"username":"' + username + '"}';
+			console.log(str);
+			console.log(typeof str);
+			var tjson = JSON.parse(str);
+			$.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/cart/list" ,//url
+                data: tjson,
+                success: function (result) {
+					console.log(username);
+					console.log(result);
+					//app3.$set(app3.cartnum,num,result.length);
+					app3.cartnum.num=result.length;
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		};
+		function typeshow(e)
+		{
+			//alert($(e).text());
+			sessionStorage.setItem("ctype",$(e).text());
+			while(apptype.goodList.pop());
+			showproduct();
+			//window.location="分类查找.html";
+			
+		};
+		function showproduct()
+		{
+			var type = sessionStorage.getItem("ctype");
+			$.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/product/list/type" ,//url
+                data: {"productType":type,"pageSize":255,"pageNum":1},
+                success: function (result) {
+					//app3.$set(app3.cartnum,num,result.length);
+					//console.log(result);
+					console.log(result.productList);
+					for(var ee of result.productList)
+					{
+						var json = {};
+						json["id"]=ee.id;
+						json["name"]=ee.name;
+						json["num"]=ee.salecnt;
+						json["price"]=ee.price;
+						json["url"]=ee.pic;
+						apptype.goodList.push(json);
+					}
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+			
+		};
+		$(document).ready(function(){
+			loadtype();
+			showproduct();
+			if(sessionStorage.getItem("cuser"))
+			{
+				var tmpuser = JSON.parse(sessionStorage.getItem("cuser")).name;
+				//alert(tmpuser);
+				getcartnum(tmpuser);
+				app4.$set(app4.user,"name",tmpuser);
+			}
+			else
+			{
+				app3.seen.visible=false;
+				app4.seen.visible=false;
+				//alert("login needed");
+			}
+			
+		});
     </script>
 </body>
 

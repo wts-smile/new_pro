@@ -21,4 +21,6 @@ public interface ProductService {
     int getProductNum();
 
     Product ProductOnStore(int productId, int status);
+
+    List<Product> getProductByKeyWord(String keyWord);
 }

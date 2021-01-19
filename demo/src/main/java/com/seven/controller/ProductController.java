@@ -6,10 +6,7 @@ import com.seven.pojo.Product;
 import com.seven.service.ProductService;
 import com.seven.utils.ProgramUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -34,16 +31,19 @@ public class ProductController {
     }
 
     @PostMapping("/product/list/type")
+    @CrossOrigin
     public ProductListRes productListType(@RequestParam("productType") String pType, @RequestParam("pageSize") int pageSize, @RequestParam("pageNum") int pageNum) {
         return productService.getProductListByType(pType, pageNum, pageSize);
     }
 
     @GetMapping("/product/get")
+    @CrossOrigin
     public Product productGet(@RequestParam("productId") int productId) {
         return productService.getProductById(productId);
     }
 
     @GetMapping("/product/types")
+    @CrossOrigin
     public List<String> productTypes() {
         return productService.getAllTypes();
     }
@@ -51,6 +51,12 @@ public class ProductController {
     @PostMapping("/product/onstore")
     public Product productOnStore(@RequestParam("productId") int productId, @RequestParam("stat") int stat) {
         return productService.ProductOnStore(productId, stat);
+    }
+
+    @GetMapping("/product/list/keyword")
+    @CrossOrigin
+    public List<Product> productListKeyword(@RequestParam("keyword") String keyword) {
+        return productService.getProductByKeyWord(keyword);
     }
 
     @PostMapping("/product/add")

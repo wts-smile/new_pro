@@ -91,10 +91,6 @@
                 <input type="text" value="" v-model="price" placeholder="请输入商品价格" />
             </p>
             <p>
-                <label>库存数量：</label>
-                <input type="text" value="" v-model="count" />
-            </p>
-            <p>
                 <label>商品图片：</label>
                 <input type="file" value="上传图片" />
             </p>
@@ -104,6 +100,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         var app = new Vue({
             el: "#app",
@@ -112,7 +109,6 @@
                 message: "暗影精灵6到飞起，全新升级10代酷睿处理器！轻薄新外观搭载酷凉风暴散热模组！",
                 name: "暗影精灵6",
                 bgurl: "img/computer.jpg",
-                count: 1,
                 price: 7800,
             },
             methods: {
