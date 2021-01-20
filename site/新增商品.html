@@ -26,23 +26,20 @@
         <div class="sidebar__nav">
             <h5>导航菜单</h5>
             <ul class="sidebar__menu">
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toOrder()">
                     <span>订单管理</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toGood()">
                     <span>商品管理</span>
                 </li>
-                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                <li class="sidebar__menu--item" style="background-color: #1376ff;" onclick="addOrder()">
                     <span>新增商品</span>
                 </li>
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="userManage()">
                     <span>用户管理</span>
                 </li>
-                <li class="sidebar__menu--item">
-                    <span>个人资料</span>
-                </li>
                 <!-- <li class="sidebar__menu--item"> -->
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toPass()">
                     <span>修改密码</span>
                 </li>
             </ul>
@@ -67,10 +64,14 @@
 
 
     <div class="box">
-        <div class="lab" id="app">
+        <form action="javascript:void(0)" class="lab" id="app" enctype="multipart/form-data">
+			<p>
+                <label>商品名称：</label>
+                <input id="pname" name="productName" type="text" value="" placeholder="请输入商品标题" v-model="name" />
+            </p>
             <p>
                 <label>商品类目：</label>
-                <select name="type" id="type">
+                <select name="productPtype" id="type">
 					<option value="mobilephone">手机</option>
 					<option value="earphone">耳机</option>
 					<option value="computer">电脑</option>
@@ -78,29 +79,28 @@
 					<option value="phone parts">手机配件</option>
 				</select>
             </p>
-            <p>
-                <label>商品名称：</label>
-                <input type="text" value="" placeholder="请输入商品标题" v-model="name" />
+			<p>
+                <label>商品图片：</label>
+                <input name="productPic" type="file" value="上传图片" />
             </p>
             <p>
                 <label>商品卖点：</label>
-                <input type="text" value="" v-model="message" />
+                <input name="productDetail" type="text" value="" v-model="message" />
             </p>
             <p>
                 <label>商品价格：</label>
-                <input type="text" value="" v-model="price" placeholder="请输入商品价格" />
+                <input name="productPrice" type="text" value="" v-model="price" placeholder="请输入商品价格" />
             </p>
-            <p>
-                <label>商品图片：</label>
-                <input type="file" value="上传图片" />
-            </p>
-            <p><button>确认</button></p>
+            
+            <p><button @click="submit">确认</button></p>
         </div>
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://lib.h-ui.net/jquery.form/3.51.0/jquery.form.min.js"></script>
+	<script src="js/adminnav.js"></script>
     <script>
         var app = new Vue({
             el: "#app",
@@ -112,10 +112,40 @@
                 price: 7800,
             },
             methods: {
-                submit: function() {
-                    console.log(this)
-                }
-            },
+                submit: function() 
+				{
+					var json={};
+					//json.append("productName",);
+                    console.log($('#app').serialize());//$('#app').serialize()
+					//alert('aaa');
+					$("#app").ajaxSubmit({url: 'http://localhost:8080/product/add', /*设置post提交到的页面*/
+						type: "post", /*设置表单以post方法提交*/
+						/* 后端自定义头部验证，可去掉  */
+						dataType: "json", /*设置返回值类型为文本*/
+						success: function (data) {
+							alert("添加成功！");
+						},
+						error: function (error) 
+						{alert('异常');}
+					});
+					/*$.ajax({
+				//几个参数需要注意一下
+					type: "POST",//方法类型
+					dataType: "json",//预期服务器返回的数据类型
+					contentType: false, // 注意这里应设为false
+					processData: false,
+					url: "http://localhost:8080/product/add" ,//url
+					data: $('#app').serialize(),
+					success: function (result) {
+						//Vue.delete();
+					},
+					error : function() {
+						alert("异常！");
+					}
+					})*/
+
+				}
+			}
 
         })
     </script>

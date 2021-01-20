@@ -24,6 +24,7 @@ public class ProductController {
     private ProgramUtils programUtils;
 
     @PostMapping("/product/list")
+    @CrossOrigin
     public ProductListRes productList(@RequestParam("pageSize") int pageSize, @RequestParam("pageNum") int pageNum) {
         List<Product> list = productService.getProductList(pageNum, pageSize);
         int total = productService.getProductNum();
@@ -49,6 +50,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/onstore")
+    @CrossOrigin
     public Product productOnStore(@RequestParam("productId") int productId, @RequestParam("stat") int stat) {
         return productService.ProductOnStore(productId, stat);
     }
@@ -60,7 +62,8 @@ public class ProductController {
     }
 
     @PostMapping("/product/add")
-    public Product productAdd(@RequestParam("productName") String productName, @RequestParam("productPtype") String productPtype, @RequestParam("productPic") MultipartFile productPic,@RequestParam("productDetail") String productDetail,@RequestParam("productPrice") double productPrice,@RequestParam("productStatus") int productStatus,@RequestParam("productSalecnt") int productSalecnt)
+    @CrossOrigin
+    public Product productAdd(@RequestParam("productName") String productName, @RequestParam("productPtype") String productPtype, @RequestParam("productPic") MultipartFile productPic,@RequestParam("productDetail") String productDetail,@RequestParam("productPrice") double productPrice)
     {
         System.out.println(productName);
         System.out.println(productPtype);
@@ -80,13 +83,13 @@ public class ProductController {
             }
         }
         Product p = new Product();
-        p.setSalecnt(productSalecnt);
+        p.setSalecnt(0);
         p.setDetail(productDetail);
         p.setName(productName);
         p.setPtype(productPtype);
         p.setPic(filename);
         p.setPrice(productPrice);
-        p.setStatus(productStatus);
+        p.setStatus(1);
         return productService.addProduct(p);
     }
 }

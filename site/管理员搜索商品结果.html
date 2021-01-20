@@ -27,23 +27,20 @@
         <div class="sidebar__nav">
             <h5>导航菜单</h5>
             <ul class="sidebar__menu">
-                <li class="sidebar__menu--item">
+                <li class="sidebar__menu--item" onclick="toOrder()">
                     <span>订单管理</span>
                 </li>
-                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                <li class="sidebar__menu--item" onclick="toGood()">
                     <span>商品管理</span>
                 </li>
-                <li class=" sidebar__menu--item ">
+                <li class="sidebar__menu--item" style="background-color: #1376ff;" onclick="addOrder()">
                     <span>新增商品</span>
                 </li>
-                <li class="sidebar__menu--item ">
+                <li class="sidebar__menu--item" onclick="userManage()">
                     <span>用户管理</span>
                 </li>
-                <li class="sidebar__menu--item " ">
-                    <span>个人资料</span>
-                </li>
-                <!-- <li class=" sidebar__menu--item "> -->
-                <li class=" sidebar__menu--item ">
+                <!-- <li class="sidebar__menu--item"> -->
+                <li class="sidebar__menu--item" onclick="toPass()">
                     <span>修改密码</span>
                 </li>
             </ul>
@@ -76,7 +73,7 @@
 
                     <th>商品</th>
                     <th width=" 120 ">单价</th>
-                    <th width=" 100 ">库存</th>
+                    <th width=" 100 ">状态</th>
                     <th width=" 80 ">操作</th>
                 </tr>
                 <tr class=" cart-item " v-for=" (item,index) in list ">
@@ -84,9 +81,12 @@
                                 style=" text-decoration: none; ">{{item.name}}</a> </span></td>
                     <td><span class=" cart-price ">{{item.price}}</span></td>
                     <td>
-                        <span class=" cart-num ">{{item.num}}</span>
+                        <span class=" cart-price ">{{item.num}}</span>
                     </td>
-                    <td><span class=" cart-del "><button @click=" remove(index) ">移除</button></span></td>
+                    <td><span class=" cart-del ">
+					<button @click=" remove(index) " v-if="item.active">下架</button>
+					<button @click=" instock(index) " v-else>上架</button>
+					</span></td>
                 </tr>
 
             </table>
@@ -100,16 +100,51 @@
 
     <script src=" plugins/vue/vue.js "></script>
     <script src=" plugins/vue/axios.js "></script>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/adminnav.js"></script>
 
     <script>
+		$(document).ready(function(){
+			//alert("good");
+			loadpro();
+		});
+		function loadpro()
+		{
+			while(app.list.pop());
+			$.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/product/list" ,//url
+                data: {"pageSize":255,"pageNum":1},
+                success: function (result) {
+					//app3.$set(app3.cartnum,num,result.length);
+					//console.log(result);
+					console.log(result.productList);
+					for(var ee of result.productList)
+					{
+						var json = {};
+						json["id"]=ee.id;
+						json["name"]=ee.name;
+						json["num"]=(ee.status==1?"已上架":"已下架");
+						json["active"]=(ee.status==1?true:false)
+						json["price"]=ee.price;
+						app.list.push(json);
+					}
+					//Vue.delete();
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+		}
         var app = new Vue({
             el: " .b ",
             data: {
-                list: [{
+                list: []/*{
                     id: 1,
                     name: " airpodspro ",
-                    price: 1999,
-                    num: 1,
+                    
                     active: true
                 }, {
                     id: 2,
@@ -123,33 +158,49 @@
                     price: 3999,
                     num: 3,
                     active: true
-                }],
+                }],*/
             },
             methods: {
-                remove: function (index) { //移除单个
-                    if (confirm('你确定要删除吗?')) {
-                        this.list.splice(index, 1);
-                    }
+                remove: function (i) { //移除单个
+					$.ajax({
+            //几个参数需要注意一下
+				async:false,
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/product/onstore" ,//url
+                data: {"productId":this.list[i].id,"stat":0},
+                success: function (result) {
+					//app3.$set(app3.cartnum,num,result.length);
+					//console.log(result);
+					//Vue.delete();
                 },
-                removelot: function () { //多选移除
-                    var list = []
-                    for (let i = 0; i < this.list.length; i++) {
-                        if (this.list[i].active == false)
-                            list.push(this.list[i])
-                    }
-                    this.list = list
+                error : function() {
+                    alert("异常！");
+                }
+				});
+				loadpro();
                 },
-                removeAll: function () {
-                    if (confirm('你确定要删除吗?')) {
-                        this.list = []
-                    }
-
+				instock: function(i)
+				{
+					$.ajax({
+            //几个参数需要注意一下
+				async:false,
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "http://localhost:8080/product/onstore" ,//url
+                data: {"productId":this.list[i].id,"stat":1},
+                success: function (result) {
+					//app3.$set(app3.cartnum,num,result.length);
+					//console.log(result);
+					//Vue.delete();
                 },
+                error : function() {
+                    alert("异常！");
+                }
+				});
+				loadpro();
+				},
                 created: function () {
-                    var that = this
-                    axios.get('待定localhost和具体地址').then(function (resp) {
-                        that.list = resp.data; //先默认返回的文件中data是需要的商品数组,数组内的数据格式你根据后端返回的数据调一下
-                    })
                 }
             },
             computed: {

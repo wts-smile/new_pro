@@ -49,23 +49,20 @@
         <div class="sidebar__nav">
             <h5>导航菜单</h5>
             <ul class="sidebar__menu">
-                <li class="sidebar__menu--item" onlick="toorder()">
+                <li class="sidebar__menu--item" onclick="toOrder()">
                     <span>订单管理</span>
                 </li>
-                <li class="sidebar__menu--item" onlick="togood()">
+                <li class="sidebar__menu--item" onclick="toGood()">
                     <span>商品管理</span>
                 </li>
-                <li class="sidebar__menu--item" onlick="addgood()">
+                <li class="sidebar__menu--item" style="background-color: #1376ff;" onclick="addOrder()">
                     <span>新增商品</span>
                 </li>
-                <li class="sidebar__menu--item"">
+                <li class="sidebar__menu--item" onclick="userManage()">
                     <span>用户管理</span>
                 </li>
-                <li class="sidebar__menu--item">
-                    <span>个人资料</span>
-                </li>
                 <!-- <li class="sidebar__menu--item"> -->
-                <li class="sidebar__menu--item" style="background-color: #1376ff;">
+                <li class="sidebar__menu--item" onclick="toPass()">
                     <span>修改密码</span>
                 </li>
             </ul>
@@ -123,6 +120,7 @@
 
 
     <script src="js/sideBar_script.js "></script>
+	<script src="js/adminnav.js"></script>
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
 </body>
